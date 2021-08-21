@@ -43,6 +43,7 @@
             $add_post_query = mysqli_query($connection, $post_query);
 
             confirm_query($add_post_query);
+            header("Location: posts.php?source=add_post");
         }
     }
 

@@ -56,6 +56,8 @@
         $edit_posts = mysqli_query($connection, $query);
 
         confirm_query($edit_posts);
+        header("Location: posts.php?source=edit_post&p_id=$post_id");
+        // success / failure modal would be nice here.
     }
 
 
