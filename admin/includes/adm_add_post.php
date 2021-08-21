@@ -27,7 +27,7 @@
         $post_tags = $_POST['post_tags'];
         $post_content = $_POST['post_content'];
         $post_date = date('y-m-d'); //
-        $post_comment_count = 4;
+        // $post_comment_count = 4;
 
         move_uploaded_file($post_image_temp, "../images/$post_image");
 
@@ -38,8 +38,8 @@
         if($post_title == "" || empty($post_title)){
             echo "This field cannot remain empty";
         } else {
-            $post_query = "INSERT INTO posts(post_cat_id, post_category, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status)";
-            $post_query .=" VALUE({$post_category_id},'{$post_category}', '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_comment_count}', '{$post_status}') ";
+            $post_query = "INSERT INTO posts(post_cat_id, post_category, post_title, post_author, post_date, post_image, post_content, post_tags, post_status)";
+            $post_query .=" VALUE({$post_category_id},'{$post_category}', '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_status}') ";
             $add_post_query = mysqli_query($connection, $post_query);
 
             confirm_query($add_post_query);

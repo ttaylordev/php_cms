@@ -18,8 +18,10 @@ if(isset($_POST['create_comment'])){
     if(!$submit_query){
        die( "The comment failed to submit to the database" . mysqli_error($connection));
     }
-                 //
-                // $comment_post_id = $row['comment_post_id'];
+    
+    $query = "UPDATE posts SET post_comment_count = post_comment_count + 1 ";
+    $query .= "WHERE post_id = $post_id ";
+    $update_comment_count = mysqli_query($connection, $query);
 } 
 
 // $post_id=1;
