@@ -25,10 +25,20 @@
                         $post_image = $row['post_image'];
                         $post_content = substr($row['post_content'], 0, 200) . '... ';
                         $post_id = $row['post_id'];
+                        $post_status = strtoupper($row['post_status']);
+                                               
+                        if($post_status == 'PUBLISHED'){
+                        } else {
+                             //<!-- First Blog Post -->
+                             include 'includes/blogposts.php';
+                        }
 
-                        //<!-- First Blog Post -->
-                        include 'includes/blogposts.php';
                     }  
+                    if($post_status !== 'PUBLISHED'){
+                        echo "<h1 class='text-center'> No content has been published. </h1>";
+                    }
+
+                   
 
                     if($select_all_posts->num_rows){
                         // page buttons
