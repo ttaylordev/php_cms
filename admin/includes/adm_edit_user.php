@@ -73,24 +73,9 @@
     <div class="form-group">
         <label for="user role">Role</label>
         <select name="role" id="">
-            <option value='thing1'>thing1</option>
-
-
-            <?php /*
-                $query = "SELECT * FROM categories";
-                $select_categories = mysqli_query($connection, $query);
-                
-                confirm_query($select_categories);
-
-                while($row = mysqli_fetch_assoc($select_categories)){
-                    $cat_name = $row['cat_name'];
-                    $cat_id = $row['cat_id'];
-
-                    echo "<option value='{$cat_id}'>{$cat_name}</option>"; 
-                } */
-            ?>
-
-    
+            <option value='admin'>Admin</option>
+            <option value='subscriber'>Subscriber</option>
+            <option value='author'>Author</option>  
         </select>
     </div>
 
@@ -98,23 +83,9 @@
     <div class="form-group">
         <label for="user status">Status</label>
         <select name="status" id="">
-            <option value='thing1'>thing1</option>
-
-            <?php /*
-                $query = "SELECT * FROM categories";
-                $select_categories = mysqli_query($connection, $query);
-                
-                confirm_query($select_categories);
-
-                while($row = mysqli_fetch_assoc($select_categories)){
-                    $cat_name = $row['cat_name'];
-                    $cat_id = $row['cat_id'];
-
-                    echo "<option value='{$cat_id}'>{$cat_name}</option>"; 
-                } */
-            ?>
-
-    
+            <option value='approved'>Approved</option>
+            <option value='denied'>Denied</option>
+            <option value='pending'>Pending</option>
         </select>
     </div>
 
