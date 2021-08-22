@@ -13,8 +13,6 @@
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">
 
-
-
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -62,7 +60,7 @@
                         <a href="./users.php?source=view_users"><i class="fa fa-fw fa-wrench"></i>View all users</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-wrench"></i>Add new user</a>
+                        <a href="./users.php?source=add_user"><i class="fa fa-fw fa-wrench"></i>Add new user</a>
                     </li>
                 </ul>
             </li>

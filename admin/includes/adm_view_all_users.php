@@ -40,7 +40,7 @@
             $user_date = $row['user_date']; 
             $user_status = $row['user_status'];
             $user_post_count = $row['user_post_count'];
-            $user_reply_count = $row['user_reply_count'];
+            $user_comment_count = $row['user_comment_count'];
 
             echo
             "<tr>
@@ -54,11 +54,11 @@
                 <td>'{$user_status}'</td>
                 <td>'{$user_date}'</td>
                 <td>'{$user_post_count}'</td>
-                <td>'{$user_reply_count}'</td>
+                <td>'{$user_comment_count}'</td>
                 
                 <td><a href='users.php?approve={$user_id}'><i class='far fa-thumbs-up'></i> Approve</a></td> 
                 <td><a href='users.php?deny={$user_id}'><i class='far fa-thumbs-down'></i> Deny</a></td>
-                <td><a href='users.php?source=edit_user&c_id={$user_id}'><i class='fas fa-trash'></i> Edit</a></td>
+                <td><a href='users.php?source=edit_user&u_id={$user_id}'><i class='fas fa-trash'></i> Edit</a></td>
                 <td><a href='users.php?delete={$user_id}'><i class='fas fa-trash'></i> Delete</a></td>
             </tr>";
             

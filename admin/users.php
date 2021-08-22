@@ -25,16 +25,15 @@
                             $source = '';
                         }
 
-                            // replace with a polymorphic solution, using the strategy pattern
                         switch($source) {
 
-                            // case 'add_user';
-                            // include "includes/adm_add_user.php"; 
-                            // break;
+                            case 'add_user';
+                            include "includes/adm_add_user.php"; 
+                            break;
 
-                            // case 'edit_user';
-                            // include "includes/adm_edit_user.php";
-                            // break;
+                            case 'edit_user';
+                            include "includes/adm_edit_user.php";
+                            break;
 
                             case 'view_users';
                             include "includes/adm_view_all_users.php"; 
