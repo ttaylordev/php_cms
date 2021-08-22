@@ -31,7 +31,7 @@
         $user_firstname = $_POST['firstname'];        
         $user_lastname = $_POST['lastname'];
         $user_email = $_POST['email'];
-        $user_image = $_FILES['image']['name'];
+        $user_image_new = $_FILES['image']['name'];
         $user_image_temp = $_FILES['image']['tmp_name'];
         $user_role = $_POST['role'];
         $user_status = $_POST['status'];
@@ -58,7 +58,6 @@
         confirm_query($edit_users);
         header("Location: users.php?source=edit_user&u_id=$user_id");
     }
-
 
 ?>
 
