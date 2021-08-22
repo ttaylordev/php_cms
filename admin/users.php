@@ -28,20 +28,20 @@
                             // replace with a polymorphic solution, using the strategy pattern
                         switch($source) {
 
-                            case 'add_comment';
-                            include "includes/adm_add_comment.php"; 
-                            break;
+                            // case 'add_user';
+                            // include "includes/adm_add_user.php"; 
+                            // break;
 
-                            case 'edit_comment';
-                            include "includes/adm_edit_comment.php";
-                            break;
+                            // case 'edit_user';
+                            // include "includes/adm_edit_user.php";
+                            // break;
 
-                            case 'view_comments';
-                            include "includes/adm_view_all_comments.php"; 
+                            case 'view_users';
+                            include "includes/adm_view_all_users.php"; 
                             break;
 
                             default:
-                            include "includes/adm_view_all_comments.php"; 
+                            include "includes/adm_view_all_users.php"; 
                             break;
                         }                   
                    ?>

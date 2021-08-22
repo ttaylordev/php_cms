@@ -59,10 +59,10 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#dropTwo"><i class="fa fa-users"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="dropTwo" class="collapse">
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-wrench"></i>Dropdown Item</a>
+                        <a href="./users.php?source=view_users"><i class="fa fa-fw fa-wrench"></i>View all users</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-wrench"></i>Dropdown Item</a>
+                        <a href="#"><i class="fa fa-fw fa-wrench"></i>Add new user</a>
                     </li>
                 </ul>
             </li>
