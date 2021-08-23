@@ -71,10 +71,20 @@
     <!-- role -->
     <div class="form-group">
         <label for="user role">Role</label>
-        <select name="role" id="">
-            <option value='admin'>Admin</option>
-            <option value='subscriber'>Subscriber</option>
-            <option value='author'>Author</option>  
+        <select name="role" id=""> 
+            <?php
+                echo " <option value='$user_role'>$user_role</option>";  
+                // roles array
+                // for each role
+                //   if $user_role !== arr[i] 
+                //     echo option value=arr[i];
+                $roles = array('admin','subscriber','author');
+                foreach($roles as $role){
+                    if($role !== $user_role){
+                        echo "<option value='$role'>$role</option>";  
+                    }
+                }
+            ?>  
         </select>
     </div>
 
@@ -82,9 +92,16 @@
     <div class="form-group">
         <label for="user status">Status</label>
         <select name="status" id="">
-            <option value='approved'>Approved</option>
-            <option value='denied'>Denied</option>
-            <option value='pending'>Pending</option>
+            <?php
+                echo " <option value='$user_status'>$user_status</option>";
+
+                $statuses = array('approved','pending','denied');
+                foreach($statuses as $status){
+                    if($status !== $user_status){
+                        echo "<option value='$status'>$status</option>";  
+                    }
+                }
+            ?> 
         </select>
     </div>
 

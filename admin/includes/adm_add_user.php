@@ -66,7 +66,7 @@
 
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="text" class="form-control" name="email">
+        <input type="email" class="form-control" name="email">
     </div>
 
     <div class="form-group">
@@ -76,11 +76,11 @@
     
     <div class="form-group">
         <label for="password">Password</label>
-        <input type="text" class="form-control" name="password">
+        <input type="password" class="form-control" name="password">
     </div>
 
     <div class="form-group">
-        <input type="submit" class="btn btn-primary" name="add_user" value="Publish">
+        <input type="submit" class="btn btn-primary" name="add_user" value="Add User">
     </div>
  
 
