@@ -84,7 +84,7 @@
                         echo "<option value='$role'>$role</option>";  
                     }
                 }
-            ?>  
+            ?>
         </select>
     </div>
 
@@ -104,7 +104,7 @@
             ?> 
         </select>
     </div>
-
+                <option value="author">Author</option>
     <div class="form-group">
         <label for="firstname">Firstname</label>
         <input type="text" class="form-control" value="<?php echo $user_firstname; ?>" name="firstname">
