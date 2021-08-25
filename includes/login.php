@@ -22,7 +22,7 @@ if(isset($_POST['login_btn'])){
     while($row = mysqli_fetch_assoc($select_user_query)){
         $user_id = $row['user_id'];
         $user_name = $row['user_name'];
-        // $user_name = $row['user_password'];
+        $user_password = $row['user_password'];
         $user_firstname = $row['user_firstname'];
         $user_lastname = $row['user_lastname'];
         $user_email = $row['user_email'];
@@ -37,6 +37,9 @@ if(isset($_POST['login_btn'])){
         echo $user_email . "<br>";
     }
 
+    if($username !== $user_name || $password !== $user_password){
+        header("Location: ../index.php");
+    }
 
 } else {
     echo "login has failed, retry";
