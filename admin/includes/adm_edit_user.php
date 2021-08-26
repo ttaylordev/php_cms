@@ -50,7 +50,8 @@
         $query .= "user_email = '{$user_email}', ";
         $query .= "user_image = '{$user_image}', ";
         $query .= "user_role = '{$user_role}', ";
-        $query .= "user_status = '{$user_status}' ";
+        $query .= "user_status = '{$user_status}', ";
+        $query .= "user_password = '{$user_password}' ";
         $query .= "WHERE user_id = {$user_id} ";
        
         $edit_users = mysqli_query($connection, $query);

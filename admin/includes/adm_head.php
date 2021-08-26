@@ -1,5 +1,6 @@
  <?php 
     ob_start();  // output buffering for header() function later on.
+    session_start();
     $path = $_SERVER['DOCUMENT_ROOT'] . "/cms";
     include $path . '/includes/read_file.php';
     include $path . '/includes/db.php';

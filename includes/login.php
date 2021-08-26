@@ -5,7 +5,7 @@ include $path . '/includes/read_file.php';
 <?php include $path . "/includes/db.php"; ?>
 <?php include $path . "/includes/functions.php"; ?>
 <?php include $path . "/admin/functions.php"; ?>
-<?php
+<?php 
 
 if(isset($_POST['login_btn'])){
     $username = $_POST['username'];
@@ -37,13 +37,19 @@ if(isset($_POST['login_btn'])){
         echo $user_email . "<br>";
     }
 
+    $_SESSION['username'] = $user_name;
+    $_SESSION['firstname'] = $user_firstname;
+    $_SESSION['lastname'] = $user_lastname;
+    $_SESSION['role'] = $user_role;
+
     if($username !== $user_name || $password !== $user_password){
+        header("Location: ../index.php");
+    } else if($username == $user_name && $password == $user_password && $user_role == 'admin'){
+        header("Location: ../admin");
+    } else if($username == $user_name && $password == $user_password && $user_role !== 'admin'){
         header("Location: ../index.php");
     }
 
 } else {
     echo "login has failed, retry";
 }
-
-
-?>
