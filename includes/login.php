@@ -53,4 +53,3 @@ if(isset($_POST['login_btn'])){
 } else {
     echo "login has failed, retry";
 }
-?>
