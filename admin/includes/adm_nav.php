@@ -65,7 +65,7 @@
                 </ul>
             </li>
             <li class="">
-                <a href="profile.php"><i class="fa far fa-user"></i> Profile</a>
+                <a href="profile.php?username=<?php if(isset($_SESSION['username'])){ echo $_SESSION['username'];}?>"><i class="fa far fa-user"></i> Profile</a>
             </li>
         </ul>
     </div>

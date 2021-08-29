@@ -42,6 +42,7 @@ if(isset($_POST['login_btn'])){
     $_SESSION['firstname'] = $user_firstname;
     $_SESSION['lastname'] = $user_lastname;
     $_SESSION['role'] = $user_role;
+    // $_SESSION['user_id'] = $user_id; //probably don't need, may be bad to reveal sql_db structure by passing id's into a session
 
     if($username !== $user_name || $password !== $user_password){
         header("Location: ../index.php");
