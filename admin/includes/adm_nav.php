@@ -65,7 +65,7 @@
                 </ul>
             </li>
             <li class="">
-                <a href="blank-page.html"><i class="fa far fa-user"></i> Profile</a>
+                <a href="profile.php"><i class="fa far fa-user"></i> Profile</a>
             </li>
         </ul>
     </div>

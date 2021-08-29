@@ -4,3 +4,4 @@
     $_SESSION['lastname'] = null;
     $_SESSION['role'] = null;
     header("Location: ../../index.php");
+

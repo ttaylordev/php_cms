@@ -32,3 +32,9 @@
     <![endif]-->
 </head>
 <body>
+
+<?php
+    if(!isset($_SESSION['user_role'])){
+        // header("Location: ../index.php ");
+        echo "working";
+    }
