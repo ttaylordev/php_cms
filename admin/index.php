@@ -19,20 +19,43 @@
 
                 <?php
 // TODO: I should query much of this once, and store it on the a back end global variable?
+
+                    // generic counts
                     $query_posts = "SELECT COUNT(*) FROM posts";
                     $query_users = "SELECT COUNT(*) FROM users";
                     $query_comments = "SELECT COUNT(*) FROM comments";
                     $query_categories = "SELECT COUNT(*) FROM categories";
 
-                    $posts_query_results = mysqli_query($connection, $query_posts);
-                    $users_query_results = mysqli_query($connection, $query_users);
-                    $comments_query_results = mysqli_query($connection, $query_comments);
-                    $categories_query_results = mysqli_query($connection, $query_categories);
+                    $posts_query_proto = mysqli_query($connection, $query_posts);
+                    $users_query_proto = mysqli_query($connection, $query_users);
+                    $comments_query_proto = mysqli_query($connection, $query_comments);
+                    $categories_query_proto = mysqli_query($connection, $query_categories);
 
-                    $posts_count = mysqli_fetch_assoc($posts_query_results)['COUNT(*)'];
-                    $users_count = mysqli_fetch_assoc($users_query_results)['COUNT(*)'];
-                    $comments_count = mysqli_fetch_assoc($comments_query_results)['COUNT(*)'];
-                    $categories_count = mysqli_fetch_assoc($categories_query_results)['COUNT(*)'];
+                    $posts_count = mysqli_fetch_assoc($posts_query_proto)['COUNT(*)'];
+                    $users_count = mysqli_fetch_assoc($users_query_proto)['COUNT(*)'];
+                    $comments_count = mysqli_fetch_assoc($comments_query_proto)['COUNT(*)'];
+                    $categories_count = mysqli_fetch_assoc($categories_query_proto)['COUNT(*)'];
+
+                    // post status counts
+                    $query_post_draft_status = "SELECT COUNT(*) FROM posts WHERE  UPPER(post_status) = UPPER('draft')";
+                    $query_post_published_status = "SELECT COUNT(*) FROM posts WHERE  UPPER(post_status) = UPPER('published')";
+                    $query_post_denied_status = "SELECT COUNT(*) FROM posts WHERE  UPPER(post_status) = UPPER('denied')";
+
+                    $post_draft_status = mysqli_query($connection, $query_post_draft_status);
+                    $post_published_status = mysqli_query($connection, $query_post_published_status);
+                    $post_denied_status = mysqli_query($connection, $query_post_denied_status);
+
+                    $post_draft_status_count = mysqli_fetch_assoc($post_draft_status)['COUNT(*)'];
+                    $post_published_status_count = mysqli_fetch_assoc($post_published_status)['COUNT(*)'];
+                    $post_denied_status_count = mysqli_fetch_assoc($post_denied_status)['COUNT(*)'];
+
+                    $query_arr = [$posts_query_proto, $users_query_proto, $comments_query_proto, $categories_query_proto, $post_draft_status, $query_post_published_status, $query_post_denied_status];
+                    
+                    foreach($query_arr as $query){
+                        confirm_query($connection, $query);
+                    }
+
+                    // echo $post_draft_status_count . "<br/> " . $post_published_status_count . "<br/> " . $post_denied_status_count;
                     
                 ?>
                 <!-- /.row -->        
@@ -138,10 +161,10 @@
                             <?php 
 // TODO: find better things to track, maybe posts that have views, comments etc.  
                                 //loop through an array to populate chart data 
-                                $element_text = ['Active Posts', 'Comments', 'Users', 'Categories'];
-                                $element_count = [$posts_count, $comments_count, $users_count, $categories_count];
+                                $element_text = ['Published Posts', 'Drafts', 'Denied', 'Comments', 'Users', 'Categories'];
+                                $element_count = [$post_published_status_count, $post_draft_status_count, $post_denied_status_count, $comments_count, $users_count, $categories_count];
 
-                                for($i = 0; $i < 4; $i++){
+                                for($i = 0; $i < count($element_text) || $i < count($element_count); $i++){
                                     echo "['{$element_text[$i]}'" . " , {$element_count[$i]}],";
                                 }
                             ?>
