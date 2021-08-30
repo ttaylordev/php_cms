@@ -26,15 +26,15 @@
                     $query_comments = "SELECT COUNT(*) FROM comments";
                     $query_categories = "SELECT COUNT(*) FROM categories";
 
-                    $posts_query_proto = mysqli_query($connection, $query_posts);
-                    $users_query_proto = mysqli_query($connection, $query_users);
-                    $comments_query_proto = mysqli_query($connection, $query_comments);
-                    $categories_query_proto = mysqli_query($connection, $query_categories);
+                    $posts_query_submittal = mysqli_query($connection, $query_posts);
+                    $users_query_submittal = mysqli_query($connection, $query_users);
+                    $comments_query_submittal = mysqli_query($connection, $query_comments);
+                    $categories_query_submittal = mysqli_query($connection, $query_categories);
 
-                    $posts_count = mysqli_fetch_assoc($posts_query_proto)['COUNT(*)'];
-                    $users_count = mysqli_fetch_assoc($users_query_proto)['COUNT(*)'];
-                    $comments_count = mysqli_fetch_assoc($comments_query_proto)['COUNT(*)'];
-                    $categories_count = mysqli_fetch_assoc($categories_query_proto)['COUNT(*)'];
+                    $posts_count = mysqli_fetch_assoc($posts_query_submittal)['COUNT(*)'];
+                    $users_count = mysqli_fetch_assoc($users_query_submittal)['COUNT(*)'];
+                    $comments_count = mysqli_fetch_assoc($comments_query_submittal)['COUNT(*)'];
+                    $categories_count = mysqli_fetch_assoc($categories_query_submittal)['COUNT(*)'];
 
                     // post status counts
                     $query_post_draft_status = "SELECT COUNT(*) FROM posts WHERE  UPPER(post_status) = UPPER('draft')";
@@ -49,15 +49,33 @@
                     $post_published_status_count = mysqli_fetch_assoc($post_published_status)['COUNT(*)'];
                     $post_denied_status_count = mysqli_fetch_assoc($post_denied_status)['COUNT(*)'];
 
-                    $query_arr = [$posts_query_proto, $users_query_proto, $comments_query_proto, $categories_query_proto, $post_draft_status, $query_post_published_status, $query_post_denied_status];
+                    // comment status counts
+                    $query_comment_pending_status = "SELECT COUNT(*) FROM comments WHERE  UPPER(comment_status) = UPPER('pending')";
+                    $comment_pending_status = mysqli_query($connection, $query_comment_pending_status);
+                    $comment_pending_status_count = mysqli_fetch_assoc($comment_pending_status)['COUNT(*)'];
+                    
+                    $query_comment_approved_status = "SELECT COUNT(*) FROM comments WHERE  UPPER(comment_status) = UPPER('approved')";
+                    $comment_approved_status = mysqli_query($connection, $query_comment_approved_status);
+                    $comment_approved_status_count = mysqli_fetch_assoc($comment_approved_status)['COUNT(*)'];
+
+                    $query_comment_denied_status = "SELECT COUNT(*) FROM comments WHERE  UPPER(comment_status) = UPPER('denied')";
+                    $comment_denied_status = mysqli_query($connection, $query_comment_denied_status);
+                    $comment_denied_status_count = mysqli_fetch_assoc($comment_denied_status)['COUNT(*)'];
+
+                    $query_subscribers = "SELECT COUNT(*) FROM users WHERE  UPPER(user_status) = UPPER('subscriber')";
+                    $query_subscriber_role = mysqli_query($connection, $query_subscribers);
+                    $user_subscriber_count = mysqli_fetch_assoc($query_subscriber_role)['COUNT(*)'];
+                    
+                    
+                    $query_arr = [$posts_query_submittal, $users_query_submittal, $comments_query_submittal, $categories_query_submittal, $post_draft_status, $query_post_published_status, $query_post_denied_status, $comment_pending_status, $query_comment_approved_status, $query_comment_denied_status, $query_subscriber_role];
+
+
                     
                     foreach($query_arr as $query){
                         confirm_query($connection, $query);
                     }
-
-                    // echo $post_draft_status_count . "<br/> " . $post_published_status_count . "<br/> " . $post_denied_status_count;
-                    
                 ?>
+
                 <!-- /.row -->        
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
@@ -154,20 +172,41 @@
                     <script type="text/javascript">
                         google.charts.load('current', {'packages':['bar']});
                         google.charts.setOnLoadCallback(drawChart);
-
+                        
+                        // TODO: find better things to track, maybe posts that have views, comments etc.  
+                                                        //loop through an array to populate chart data 
                         function drawChart() {
-                        var data = google.visualization.arrayToDataTable([
-                            ['Data', 'Count'],
-                            <?php 
-// TODO: find better things to track, maybe posts that have views, comments etc.  
-                                //loop through an array to populate chart data 
-                                $element_text = ['Published Posts', 'Drafts', 'Denied', 'Comments', 'Users', 'Categories'];
-                                $element_count = [$post_published_status_count, $post_draft_status_count, $post_denied_status_count, $comments_count, $users_count, $categories_count];
-
-                                for($i = 0; $i < count($element_text) || $i < count($element_count); $i++){
-                                    echo "['{$element_text[$i]}'" . " , {$element_count[$i]}],";
-                                }
-                            ?>
+                            var data = google.visualization.arrayToDataTable([
+                                ['Data', 'Count'],
+                                <?php
+                                    $element_text = [
+                                        'Published Posts',
+                                        'Drafts',
+                                        'Denied Posts',
+                                        'Subscribers',
+                                        'Total Comments',
+                                        'Pending Comments',
+                                        'Approved Comments',
+                                        'Denied Comments',
+                                        'Users',
+                                        'Categories'
+                                    ];
+                                    $element_count = [
+                                        $post_published_status_count,
+                                        $post_draft_status_count,
+                                        $post_denied_status_count,
+                                        $user_subscriber_count,
+                                        $comments_count,
+                                        $comment_pending_status_count,
+                                        $comment_approved_status_count,
+                                        $comment_denied_status_count,
+                                        $users_count,
+                                        $categories_count
+                                    ];
+                                    for($i = 0; $i < count($element_text) || $i < count($element_count); $i++){
+                                        echo "['{$element_text[$i]}', {$element_count[$i]}], ";
+                                    }
+                                ?>
                         ]);
 
                         var options = {
