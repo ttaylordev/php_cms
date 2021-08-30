@@ -138,8 +138,8 @@
                             <?php 
 // TODO: find better things to track, maybe posts that have views, comments etc.  
                                 //loop through an array to populate chart data 
-                                $element_text = ['Active Posts', 'Categories', 'Users', 'Comments'];
-                                $element_count = [$posts_count, $categories_count, $users_count, $comments_count];
+                                $element_text = ['Active Posts', 'Comments', 'Users', 'Categories'];
+                                $element_count = [$posts_count, $comments_count, $users_count, $categories_count];
 
                                 for($i = 0; $i < 4; $i++){
                                     echo "['{$element_text[$i]}'" . " , {$element_count[$i]}],";
