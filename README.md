@@ -1,6 +1,6 @@
 # PHP CMS blog system
 
-This project was initially based on a project by my instructor, Edwin Diaz. I've made several changes as I've learned. There are many more changes to come as I make this project my own.
+This project was initially based on a project by my instructor, Edwin Diaz. I've made several changes as I've learned. There are many more changes and customizations to come as my skills progress beyond the coursework.
 
 jquery and bootstrap-unminified have not been included in this repo, but jquery will be necessary to run this application. jquery.js can be added to /js and /admin/js prior to running.
 
