@@ -33,6 +33,8 @@
 </head>
 <body>
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <?php
     if(!isset($_SESSION['user_role'])){
         // header("Location: ../index.php ");
