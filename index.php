@@ -28,9 +28,9 @@
                         $post_status = strtoupper($row['post_status']);
                                                
                         if($post_status == 'PUBLISHED'){
+                            //<!-- First Blog Post -->
+                            include 'includes/blogposts.php';
                         } else {
-                             //<!-- First Blog Post -->
-                             include 'includes/blogposts.php';
                         }
 
                     }  

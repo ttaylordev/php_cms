@@ -37,9 +37,9 @@
                     $categories_count = mysqli_fetch_assoc($categories_query_submittal)['COUNT(*)'];
 
                     // post status counts
-                    $query_post_draft_status = "SELECT COUNT(*) FROM posts WHERE  UPPER(post_status) = UPPER('draft')";
-                    $query_post_published_status = "SELECT COUNT(*) FROM posts WHERE  UPPER(post_status) = UPPER('published')";
-                    $query_post_denied_status = "SELECT COUNT(*) FROM posts WHERE  UPPER(post_status) = UPPER('denied')";
+                    $query_post_draft_status = "SELECT COUNT(*) FROM posts WHERE UPPER(post_status) = UPPER('draft')";
+                    $query_post_published_status = "SELECT COUNT(*) FROM posts WHERE UPPER(post_status) = UPPER('published')";
+                    $query_post_denied_status = "SELECT COUNT(*) FROM posts WHERE UPPER(post_status) = UPPER('denied')";
 
                     $post_draft_status = mysqli_query($connection, $query_post_draft_status);
                     $post_published_status = mysqli_query($connection, $query_post_published_status);
@@ -50,26 +50,35 @@
                     $post_denied_status_count = mysqli_fetch_assoc($post_denied_status)['COUNT(*)'];
 
                     // comment status counts
-                    $query_comment_pending_status = "SELECT COUNT(*) FROM comments WHERE  UPPER(comment_status) = UPPER('pending')";
+                    $query_comment_pending_status = "SELECT COUNT(*) FROM comments WHERE UPPER(comment_status) = UPPER('pending')";
                     $comment_pending_status = mysqli_query($connection, $query_comment_pending_status);
                     $comment_pending_status_count = mysqli_fetch_assoc($comment_pending_status)['COUNT(*)'];
                     
-                    $query_comment_approved_status = "SELECT COUNT(*) FROM comments WHERE  UPPER(comment_status) = UPPER('approved')";
+                    $query_comment_approved_status = "SELECT COUNT(*) FROM comments WHERE UPPER(comment_status) = UPPER('approved')";
                     $comment_approved_status = mysqli_query($connection, $query_comment_approved_status);
                     $comment_approved_status_count = mysqli_fetch_assoc($comment_approved_status)['COUNT(*)'];
 
-                    $query_comment_denied_status = "SELECT COUNT(*) FROM comments WHERE  UPPER(comment_status) = UPPER('denied')";
+                    $query_comment_denied_status = "SELECT COUNT(*) FROM comments WHERE UPPER(comment_status) = UPPER('denied')";
                     $comment_denied_status = mysqli_query($connection, $query_comment_denied_status);
                     $comment_denied_status_count = mysqli_fetch_assoc($comment_denied_status)['COUNT(*)'];
 
-                    $query_subscribers = "SELECT COUNT(*) FROM users WHERE  UPPER(user_status) = UPPER('subscriber')";
+                    $query_subscribers = "SELECT COUNT(*) FROM users WHERE UPPER(user_status) = UPPER('subscriber')";
                     $query_subscriber_role = mysqli_query($connection, $query_subscribers);
                     $user_subscriber_count = mysqli_fetch_assoc($query_subscriber_role)['COUNT(*)'];
-                    
-                    
-                    $query_arr = [$posts_query_submittal, $users_query_submittal, $comments_query_submittal, $categories_query_submittal, $post_draft_status, $query_post_published_status, $query_post_denied_status, $comment_pending_status, $query_comment_approved_status, $query_comment_denied_status, $query_subscriber_role];
-
-
+                                        
+                    $query_arr = [
+                        $posts_query_submittal,
+                        $users_query_submittal,
+                        $comments_query_submittal,
+                        $categories_query_submittal,
+                        $post_draft_status,
+                        $query_post_published_status,
+                        $query_post_denied_status,
+                        $comment_pending_status,
+                        $query_comment_approved_status,
+                        $query_comment_denied_status,
+                        $query_subscriber_role
+                    ];
                     
                     foreach($query_arr as $query){
                         confirm_query($connection, $query);

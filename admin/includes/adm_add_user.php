@@ -23,7 +23,8 @@
             $add_user_query = mysqli_query($connection, $user_query);
 
             confirm_query($add_user_query);
-            header("Location: users.php?source=view_users");
+            echo "User Created: " . " <a href='user.php'>View Users</a> ";
+            // header("Location: users.php?source=view_users");
         }
     }
 
@@ -37,20 +38,32 @@
     </div>
     
     <div class="form-group">
-    <label for="user role">Role</label>
-        <select name="role" id="">
-            <option value='admin'>Admin</option>
-            <option value='subscriber'>Subscriber</option>
-            <option value='author'>Author</option>  
+        <label for="user_role">User role</label><br>
+        <select name="role" id=""> 
+            <?php
+                echo " <option value='$user_role'>$user_role</option>";  
+                $roles = array('Admin','Subscriber','Author');
+                foreach($roles as $role){
+                    if($role !== $user_role){
+                        echo "<option value='$role'>$role</option>";  
+                    }
+                }
+            ?>
         </select>
     </div>
 
     <div class="form-group">
-    <label for="user status">Status</label>
-        <select name="status" id="">
-            <option value='approved'>Approved</option>
-            <option value='denied'>Denied</option>
-            <option value='pending'>Pending</option>
+        <label for="user_status">User Status</label><br>
+        <select name="status" id=""> 
+            <?php
+                echo " <option value='$user_status'>$user_status</option>";  
+                $statuses = array('draft','published','denied');
+                foreach($statuses as $status){
+                    if($status !== $user_status){
+                        echo "<option value='$status'>$status</option>";  
+                    }
+                }
+            ?>
         </select>
     </div>
     

@@ -91,7 +91,7 @@
                                 <?php
                                     echo " <option value='$user_role'>$user_role</option>";  
 
-                                    $roles = array('admin','subscriber','author');
+                                    $roles = array('Admin','Subscriber','Author');
                                     foreach($roles as $role){
                                         if($role !== $user_role){
                                             echo "<option value='$role'>$role</option>";  

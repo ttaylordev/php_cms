@@ -57,7 +57,8 @@
     </div>
     
     <div class="form-group">
-        <!-- <label for="Post Category Id"></label> -->
+        <label for="Post Category"></label>
+        <br>
         <select name="post_category" id="">
             <?php
                 $query = "SELECT * FROM categories";
@@ -82,8 +83,18 @@
     </div>
 
     <div class="form-group">
-        <label for="post_status">Post Status</label>
-        <input type="text" class="form-control" name="status">
+        <label for="post_status">Post Status</label><br>
+        <select name="status" id=""> 
+            <?php
+                echo " <option value='$post_status'>$post_status</option>";  
+                $statuses = array('draft','published','denied');
+                foreach($statuses as $status){
+                    if($status !== $post_status){
+                        echo "<option value='$status'>$status</option>";  
+                    }
+                }
+            ?>
+        </select>
     </div>
 
     <div class="form-group">

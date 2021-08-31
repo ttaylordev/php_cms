@@ -71,7 +71,7 @@
     </div>
 
     <div class="form-group">
-        <label for="Post Category Id"></label>
+        <label for="Post Category Id">Post Category</label><br>
         <select name="post_category" id="">
             <?php
                 $query = "SELECT * FROM categories";
@@ -94,10 +94,38 @@
         <input type="text" class="form-control" value="<?php echo $post_author; ?>" name="author">
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label for="post_status">Post Status</label>
         <input type="text" class="form-control" value="<?php echo $post_status; ?>" name="status">
+    </div> -->
+
+    <!-- <div class="form-group">
+    <label for="post_status">Post Status</label>
+    <br/>
+    <select name="status" id="">
+        <option value='draft'>Draft</option>
+        <option value='published'>Publish</option>
+        <option value='pending'>Pending</option>
+    </select>
+    </div> -->
+
+    <div class="form-group">
+        <label for="post_status">Post Status</label><br>
+        <select name="status" id=""> 
+            <?php
+                echo " <option value='$post_status'>$post_status</option>";  
+                $statuses = array('draft','published','denied');
+                foreach($statuses as $status){
+                    if($status !== $post_status){
+                        echo "<option value='$status'>$status</option>";  
+                    }
+                }
+            ?>
+        </select>
     </div>
+
+
+
 
     <div class="form-group">
         <img width="100" src="../images/<?php echo $post_image; ?>" alt="">
