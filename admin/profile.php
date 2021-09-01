@@ -87,7 +87,7 @@
                         <!-- role -->
                         <div class="form-group">
                             <label for="user role">Role</label>
-                            <select name="role" id=""> 
+                            <select name="role" id="role_field"> 
                                 <?php
                                     echo " <option value='$user_role'>$user_role</option>";  
 
@@ -104,7 +104,7 @@
                         <!-- status -->
                         <div class="form-group">
                             <label for="user status">Status</label>
-                            <select name="status" id="">
+                            <select name="status" id="status_field">
                                 <?php
                                     echo " <option value='$user_status'>$user_status</option>";
 
