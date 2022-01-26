@@ -1,5 +1,4 @@
 <?php
-
 $path = $_SERVER['DOCUMENT_ROOT'] . "/cms";
 $file = $path . "/includes/data.txt";
 $passphrass = '';
