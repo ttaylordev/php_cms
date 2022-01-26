@@ -17,6 +17,7 @@
                 <?php 
                     $query = "SELECT * FROM posts";
                     $select_all_posts = mysqli_query($connection, $query);
+                    $content_loaded = false;
 
                     while($row = mysqli_fetch_assoc($select_all_posts)){
                         $post_title = $row['post_title'];
@@ -27,14 +28,15 @@
                         $post_id = $row['post_id'];
                         $post_status = strtoupper($row['post_status']);
                                                
-                        if($post_status == 'PUBLISHED'){
+                        if (strtoupper($post_status) === 'PUBLISHED'){
+                            $content_loaded= true;
                             //<!-- First Blog Post -->
                             include 'includes/blogposts.php';
                         } else {
                         }
 
                     }  
-                    if($post_status !== 'PUBLISHED'){
+                    if(!$content_loaded){
                         echo "<h1 class='text-center'> No content has been published. </h1>";
                     }
 

@@ -94,21 +94,6 @@
         <input type="text" class="form-control" value="<?php echo $post_author; ?>" name="author">
     </div>
 
-    <!-- <div class="form-group">
-        <label for="post_status">Post Status</label>
-        <input type="text" class="form-control" value="<?php echo $post_status; ?>" name="status">
-    </div> -->
-
-    <!-- <div class="form-group">
-    <label for="post_status">Post Status</label>
-    <br/>
-    <select name="status" id="">
-        <option value='draft'>Draft</option>
-        <option value='published'>Publish</option>
-        <option value='pending'>Pending</option>
-    </select>
-    </div> -->
-
     <div class="form-group">
         <label for="post_status">Post Status</label><br>
         <select name="status" id=""> 
@@ -123,9 +108,6 @@
             ?>
         </select>
     </div>
-
-
-
 
     <div class="form-group">
         <img width="100" src="../images/<?php echo $post_image; ?>" alt="">
