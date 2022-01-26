@@ -1,7 +1,4 @@
 <?php
-$path = $_SERVER['DOCUMENT_ROOT'] . "/cms";
-$file = $path . "/includes/data.txt";
-
 $pw = $passphrass;
 
 $db['db_host'] = 'localhost';
@@ -16,9 +13,6 @@ foreach($db as $key => $value){
 
 $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-if($connection){
-    // echo "connection established";
-} else {
+if($connection == false){
     echo "failed to establish connection";
-
 }
