@@ -18,7 +18,7 @@
                 </div>
 
                 <?php
-// TODO: I should query much of this once, and store it on the a back end global variable?
+// TODO: I should query much of this once, and store it on the a back end variable?
 
                     // generic counts
                     $query_posts = "SELECT COUNT(*) FROM posts";
@@ -189,18 +189,20 @@
                                 ['Data', 'Count'],
                                 <?php
                                     $element_text = [
-                                        'Published Posts',
+                                        'All Posts',
+                                        'Published',
                                         'Drafts',
-                                        'Denied Posts',
-                                        'Subscribers',
-                                        'Total Comments',
-                                        'Pending Comments',
-                                        'Approved Comments',
-                                        'Denied Comments',
+                                        'Denied',
+                                        'Subs',
+                                        'All Comments',
+                                        'Pending',
+                                        'Approved',
+                                        'Denied',
                                         'Users',
                                         'Categories'
                                     ];
                                     $element_count = [
+                                        $posts_count,
                                         $post_published_status_count,
                                         $post_draft_status_count,
                                         $post_denied_status_count,
@@ -219,13 +221,35 @@
                         ]);
 
                         var options = {
+                            // fontSize: 4,
                             chart: {
                                 title: '',
                                 subtitle: '',
+                            },
+                            // annotations: {
+                            //     textStyle: {
+                            //         fontSize: 4
+                            //     }
+                            // },
+                            // legend: {
+                            //     textStyle: {
+                            //         fontSize: 4
+                            //     }
+                            // },
+                            // axes: {
+                            //     textStyle: {
+                            //         fontSize: 4
+                            //     }
+                            // },
+                            hAxis : {   
+                                textStyle : {
+                                    fontSize: 5 // or the number you want
+                                }   
                             }
                         };
 
                         var chart = new google.charts.Bar(document.getElementById('columnChart_material'));
+                        console.log(google.charts.Bar.convertOptions(options));
 
                         chart.draw(data, google.charts.Bar.convertOptions(options));
                         }

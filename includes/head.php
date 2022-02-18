@@ -1,11 +1,3 @@
-<?php 
-$path = $_SERVER['DOCUMENT_ROOT'] . "/cms";
-include $path . '/includes/read_file.php';
-?>
-<?php include $path . "/includes/db.php"; ?>
-<?php include $path . "/includes/functions.php"; ?>
-<?php include $path . "/admin/functions.php"; ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,5 +19,10 @@ include $path . '/includes/read_file.php';
     <![endif]-->
     </head>
 <body>
-    
-   
+<?php 
+$path = $_SERVER['DOCUMENT_ROOT'] . "/cms";
+include $path . '/includes/read_file.php';
+?>
+<?php include $path . "/includes/db.php"; ?>
+<?php include $path . "/includes/functions.php"; ?>
+<?php include $path . "/admin/functions.php"; ?>
