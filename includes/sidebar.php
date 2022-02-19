@@ -3,11 +3,11 @@
     <!-- Blog Search -->
     <div class="well">
         <h4>Blog Search</h4>
-        <form action="search.php" method="post";>
+        <form action="search.php" method="post" ;>
             <div class="input-group">
-                <input type="text" class="form-control"name="search">
+                <input type="text" class="form-control" name="search">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" name ="submit" type="submit">
+                    <button class="btn btn-default" name="submit" type="submit">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
                 </span>
@@ -15,10 +15,10 @@
         </form>
     </div>
 
-        <!-- login form -->
+    <!-- login form -->
     <div class="well">
         <h4>Login</h4>
-        <form action="includes/login.php" method="post";>
+        <form action="includes/login.php" method="post" ;>
             <div class="form-group">
                 <input type="text" class="form-control" name="username" placeholder="Enter username">
             </div>
@@ -29,7 +29,7 @@
                     <button class="btn btn-primary" name="login_btn" type="submit">Login</button>
                 </span>
             </div>
-        </form> 
+        </form>
     </div>
 
     <!-- Blog Categories -->
@@ -49,6 +49,5 @@
     </div>
 
     <!-- Side Widget -->
-    <?php include "includes/widget.php"?>
+    <?php include "includes/widget.php" ?>
 </div>
-

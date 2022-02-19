@@ -16,8 +16,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
 
-                <?php 
-                    DisplayCategories();
+                <?php
+                DisplayCategories();
                 ?>
 
                 <li>
@@ -29,7 +29,7 @@
                 <!-- <li>
                     <a href="#">Contact</a>
                 </li> -->
-                
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->

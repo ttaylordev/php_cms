@@ -1,2 +1,2 @@
-blank profile here 
+blank profile here
 <?php echo 'filler '; ?>
