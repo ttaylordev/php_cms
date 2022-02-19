@@ -4,7 +4,6 @@
     $path = $_SERVER['DOCUMENT_ROOT'] . "/cms";
     include $path . '/includes/read_file.php';
     include $path . '/includes/db.php';
-    echo $path;
     ?>
  <?php include "functions.php"; ?>
 
@@ -41,5 +40,4 @@
      <?php
         if (!isset($_SESSION['user_role'])) {
             // header("Location: ../index.php ");
-            echo "working";
         }
