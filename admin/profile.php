@@ -80,7 +80,7 @@
 
                         <div class="form-group">
                             <label for="user_name">Username</label>
-                            <input type="text" class="form-control" value="<?php echo $user_name; ?>" name="username">
+                            <input type="text" class="form-control" name="username" autocomplete="username" value="<?php echo $user_name; ?>">
                         </div>
 
                         <!-- role -->
@@ -129,7 +129,7 @@
 
                         <div class="form-group">
                             <label for="firstname">Email</label>
-                            <input type="email" class="form-control" value="<?php echo $user_email; ?>" name="email">
+                            <input type="email" class="form-control" autocomplete="email" value="<?php echo $user_email; ?>" name="email">
                         </div>
 
                         <div class="form-group">
@@ -139,7 +139,7 @@
 
                         <div class="form-group">
                             <label for="user_password">Password</label>
-                            <input type="password" class="form-control" name="user_password" value="<?php echo $user_password; ?>">
+                            <input type="password" class="form-control" name="user_password" autocomplete="current-password" value="<?php echo $user_password; ?>">
                             </input>
                         </div>
 
