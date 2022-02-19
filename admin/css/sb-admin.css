@@ -23,7 +23,7 @@ body {
 }
 
 #page-wrapper {
-    width: 100%;
+    width: fit-content;
     padding: 0;
     background-color: #fff;
 }
@@ -35,7 +35,7 @@ body {
 
 @media(min-width:768px) {
     #wrapper {
-        padding-left: 225px;
+        padding-left: 165px;
     }
     #page-wrapper {
         padding: 10px;
@@ -86,6 +86,11 @@ body {
     white-space: normal;
 }
 
+.navbar-fixed-bottom .navbar-collapse,
+.navbar-fixed-top .navbar-collapse {
+    max-height: fit-content;
+}
+
 ul.message-dropdown {
     padding: 0;
     max-height: 250px;
@@ -119,7 +124,7 @@ ul.alert-dropdown {
         position: fixed;
         top: 51px;
         left: 225px;
-        width: 225px;
+        width: 165px;
         margin-left: -225px;
         border: none;
         border-radius: 0;
@@ -127,7 +132,7 @@ ul.alert-dropdown {
         background-color: #222;
     }
     .side-nav>li>a {
-        width: 225px;
+        width: 165px;
     }
     .side-nav li a:hover,
     .side-nav li a:focus {
