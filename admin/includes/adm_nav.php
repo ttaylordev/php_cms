@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -39,10 +38,12 @@
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#dropOne"><i class="far fa-newspaper"></i> Posts <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="dropOne" class="collapse">
-                    <li>    <!-- source variable default in posts.php  -->
+                    <li>
+                        <!-- source variable default in posts.php  -->
                         <a href="./posts.php"><i class="fa fa-file"></i> View All Posts</a>
                     </li>
-                    <li>    <!-- sets the source variable to be used in posts.php  -->
+                    <li>
+                        <!-- sets the source variable to be used in posts.php  -->
                         <a href="./posts.php?source=add_post"><i class="fa fa-file"></i> Add Post</a>
                     </li>
                 </ul>
@@ -65,7 +66,9 @@
                 </ul>
             </li>
             <li class="">
-                <a href="profile.php?username=<?php if(isset($_SESSION['username'])){ echo $_SESSION['username'];}?>"><i class="fa far fa-user"></i> Profile</a>
+                <a href="profile.php?username=<?php if (isset($_SESSION['username'])) {
+                                                    echo $_SESSION['username'];
+                                                } ?>"><i class="fa far fa-user"></i> Profile</a>
             </li>
         </ul>
     </div>

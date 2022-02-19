@@ -20,30 +20,30 @@
     </thead>
     <tbody>
 
-    <?php
-       
+        <?php
+
         $query = "SELECT * FROM users";
         $get_all_users = mysqli_query($connection, $query);
 
-        if(!$get_all_users){
+        if (!$get_all_users) {
             echo "Query unsuccessful";
         } else {
-        
-            while($row = mysqli_fetch_assoc($get_all_users)){
-            $user_id = $row['user_id'];
-            $user_name = $row['user_name'];
-            $user_firstname = $row['user_firstname'];
-            $user_lastname = $row['user_lastname'];
-            $user_email = $row['user_email'];
-            $user_image = $row['user_image']; 
-            $user_role = $row['user_role']; 
-            $user_date = $row['user_date']; 
-            $user_status = $row['user_status'];
-            $user_post_count = $row['user_post_count'];
-            $user_comment_count = $row['user_comment_count'];
 
-            echo
-            "<tr>
+            while ($row = mysqli_fetch_assoc($get_all_users)) {
+                $user_id = $row['user_id'];
+                $user_name = $row['user_name'];
+                $user_firstname = $row['user_firstname'];
+                $user_lastname = $row['user_lastname'];
+                $user_email = $row['user_email'];
+                $user_image = $row['user_image'];
+                $user_role = $row['user_role'];
+                $user_date = $row['user_date'];
+                $user_status = $row['user_status'];
+                $user_post_count = $row['user_post_count'];
+                $user_comment_count = $row['user_comment_count'];
+
+                echo
+                "<tr>
                 <td>'{$user_id}'</td>
                 <td>'{$user_name}'</td>
                 <td>'{$user_firstname}'</td>
@@ -61,14 +61,13 @@
                 <td><a href='users.php?source=edit_user&u_id={$user_id}'><i class='fas fa-trash'></i> Edit</a></td>
                 <td><a href='users.php?delete={$user_id}'><i class='fas fa-trash'></i> Delete</a></td>
             </tr>";
-            
-            } 
+            }
         }
-    ?>
+        ?>
 
-    <?php
+        <?php
 
-        if(isset($_GET['deny'])){
+        if (isset($_GET['deny'])) {
 
             $deny_user_id = $_GET['deny'];
 
@@ -80,7 +79,7 @@
             header("Location: users.php");
         }
 
-        if(isset($_GET['approve'])){
+        if (isset($_GET['approve'])) {
 
             $approve_user_id = $_GET['approve'];
             // echo "<br>" . $approve_user_id; // echo's won't work here because of the refresh.
@@ -94,7 +93,7 @@
         }
 
 
-        if(isset($_GET['delete'])){
+        if (isset($_GET['delete'])) {
 
             $del_user_id = $_GET['delete'];
 
@@ -106,6 +105,6 @@
             header("Location: users.php");
         }
 
-    ?> 
+        ?>
     </tbody>
 </table>

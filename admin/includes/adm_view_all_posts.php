@@ -16,17 +16,17 @@
     </thead>
     <tbody>
 
-    <?php
-       
-       $query = "SELECT * FROM posts";
-       $posts_query = mysqli_query($connection, $query);
-        
-        if(!$posts_query){
+        <?php
+
+        $query = "SELECT * FROM posts";
+        $posts_query = mysqli_query($connection, $query);
+
+        if (!$posts_query) {
             echo "Query unsuccessful";
         } else {
-        
 
-            while($row = mysqli_fetch_assoc($posts_query)){
+
+            while ($row = mysqli_fetch_assoc($posts_query)) {
                 $post_id = $row['post_id'];
                 $post_author = $row['post_author'];
                 $post_title = $row['post_title'];
@@ -42,13 +42,13 @@
 
                 $query = "SELECT * FROM categories WHERE cat_id = $post_cat_id ";
                 $select_update_cat_id = mysqli_query($connection, $query);
-                
-                while($row = mysqli_fetch_assoc($select_update_cat_id)){
+
+                while ($row = mysqli_fetch_assoc($select_update_cat_id)) {
                     $cat_title = $row['cat_title'];
                     $cat_id = $row['cat_id'];
 
-                echo
-                "<tr>
+                    echo
+                    "<tr>
                     <td>'{$post_id}'</td>
                     <td>'{$post_author}'</td>
                     <td>'{$post_title}'</td>
@@ -62,12 +62,11 @@
                     <td><a href='posts.php?source=edit_post&p_id={$post_id}'><i class='far fa-edit'></i> Edit</a></td> 
                     <td><a href='posts.php?delete={$post_id}'> Delete</a></td>
                 </tr>";
-                
-                }// the & divides values for multiple parameters
+                } // the & divides values for multiple parameters
             }
         }
 
-        if(isset($_GET['delete'])){
+        if (isset($_GET['delete'])) {
 
             $del_post_id = $_GET['delete'];
 
@@ -78,6 +77,6 @@
             header("Location: posts.php");
         }
 
-    ?> 
+        ?>
     </tbody>
 </table>
