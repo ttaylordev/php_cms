@@ -1,13 +1,10 @@
-<?php include "includes/adm_head.php";?>
+<?php include "includes/adm_head.php"; ?>
 
 <div id="wrapper">
 
-<!-- Navigation -->
-<?php include "includes/adm_nav.php";?>
-<?php 
+    <!-- Navigation -->
+    <?php include "includes/adm_nav.php"; ?>
 
-    
-?>
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
@@ -15,15 +12,15 @@
                 <div class="col-lg-12">
 
                     <h1 class="page-header">
-                        Welcome Admin 
+                        Welcome Admin
                     </h1>
 
                     <div class="col-xs-6">
                         <?php // create new categories
-                            insert_categories();
+                        insert_categories();
                         ?>
-                            <!-- adding categories -->
-                        <form class="" action=""  method="post">
+                        <!-- adding categories -->
+                        <form class="" action="" method="post">
 
                             <div class="form-group">
                                 <label for="cat_title">Add Category</label>
@@ -36,15 +33,15 @@
 
                         </form>
                         <!-- editing categories -->
-                        <?php 
-                            if(isset($_GET['edit'])){
-                                $cat_id = $_GET['edit'];
-                                include "includes/adm_update_category.php";
-                            }
+                        <?php
+                        if (isset($_GET['edit'])) {
+                            $cat_id = $_GET['edit'];
+                            include "includes/adm_update_category.php";
+                        }
                         ?>
 
                     </div>
-                        <!-- category table -->
+                    <!-- category table -->
                     <div class="col-xs-6">
                         <table class="table table-bordered table-hover">
                             <thead>
@@ -54,8 +51,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php find_all_categories(); // populate categories table?>
-                                <?php delete_category(); // deletion of categories ?> 
+                                <?php find_all_categories(); // populate categories table
+                                ?>
+                                <?php delete_category(); // deletion of categories 
+                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -70,6 +69,4 @@
 </div>
 <!-- /#wrapper -->
 <!-- footer -->
-<?php include "includes/adm_foot.php";?>
-
-
+<?php include "includes/adm_foot.php"; ?>

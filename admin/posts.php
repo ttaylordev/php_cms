@@ -1,13 +1,9 @@
-<?php include "includes/adm_head.php";?>
+<?php include "includes/adm_head.php"; ?>
 
 <div id="wrapper">
 
-<!-- Navigation -->
-<?php include "includes/adm_nav.php";?>
-<?php 
-
-    
-?>
+    <!-- Navigation -->
+    <?php include "includes/adm_nav.php"; ?>
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
@@ -15,39 +11,39 @@
                 <div class="col-lg-12">
 
                     <h1 class="page-header">
-                        Welcome Admin 
+                        Welcome Admin
                     </h1>
 
-                   <?php 
-                        if(isset($_GET['source'])){
-                            $source = $_GET['source'];
-                        } else {
-                            $source = '';
-                        }
+                    <?php
+                    if (isset($_GET['source'])) {
+                        $source = $_GET['source'];
+                    } else {
+                        $source = '';
+                    }
 
-                        switch($source) {
+                    switch ($source) {
 
-                            case 'add_post';
-                            include "includes/adm_add_post.php"; 
+                        case 'add_post';
+                            include "includes/adm_add_post.php";
                             break;
 
-                            case 'edit_post';
+                        case 'edit_post';
                             include "includes/adm_edit_post.php";
                             break;
 
-                            case '54';
+                        case '54';
                             echo "nice a 54";
                             break;
 
-                            case '324';
+                        case '324';
                             echo "nice a 324";
                             break;
 
-                            default:
-                            include "includes/adm_view_all_posts.php"; 
+                        default:
+                            include "includes/adm_view_all_posts.php";
                             break;
-                        }                   
-                   ?>
+                    }
+                    ?>
 
                 </div>
             </div>
@@ -59,6 +55,4 @@
 </div>
 <!-- /#wrapper -->
 <!-- footer -->
-<?php include "includes/adm_foot.php";?>
-
-
+<?php include "includes/adm_foot.php"; ?>

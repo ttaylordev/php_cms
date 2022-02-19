@@ -1,19 +1,19 @@
-<?php include "includes/adm_head.php";?>
+<?php include "includes/adm_head.php"; ?>
 
 <div id="wrapper">
 
-<!-- Navigation -->
-<?php include "includes/adm_nav.php";?>
-<?php 
+    <!-- Navigation -->
+    <?php include "includes/adm_nav.php"; ?>
+    <?php
 
-    if(isset($_SESSION['username'])){
-        
+    if (isset($_SESSION['username'])) {
+
         $username = $_SESSION['username'];
         $query = "SELECT * FROM users WHERE user_name = '{$username}' ";
 
         $select_user_profile = mysqli_query($connection, $query);
 
-        while($row = mysqli_fetch_assoc($select_user_profile)){
+        while ($row = mysqli_fetch_assoc($select_user_profile)) {
             $user_id = $row['user_id'];
             $user_name = $row['user_name'];
             $user_firstname = $row['user_firstname'];
@@ -27,14 +27,13 @@
             $user_comment_count = $row['user_comment_count'];
             $user_views_count = $row['user_views_count'];
             $user_password = $row['user_password'];
-
         }
     }
 
-    if(isset($_POST['edit_profile'])){
+    if (isset($_POST['edit_profile'])) {
 
         $user_name = $_POST['username'];
-        $user_firstname = $_POST['firstname'];        
+        $user_firstname = $_POST['firstname'];
         $user_lastname = $_POST['lastname'];
         $user_email = $_POST['email'];
         $user_image_new = $_FILES['image']['name'];
@@ -45,7 +44,7 @@
 
         move_uploaded_file($user_image_temp, "../images/$user_image");
 
-        if(!empty($user_image_new)){
+        if (!empty($user_image_new)) {
             $user_image = $user_image_new;
         }
 
@@ -59,14 +58,14 @@
         $query .= "user_status = '{$user_status}', ";
         $query .= "user_password = '{$user_password}' ";
         $query .= "WHERE user_id = {$user_id} ";
-       
+
         $edit_users = mysqli_query($connection, $query);
 
         confirm_query($edit_users);
         header("Location: users.php?source=edit_user&u_id=$user_id");
     }
 
-?>
+    ?>
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
@@ -74,7 +73,7 @@
                 <div class="col-lg-12">
 
                     <h1 class="page-header">
-                        Welcome <?php echo $username;?>   
+                        Welcome <?php echo $username; ?>
                     </h1>
 
                     <form action="" method="post" enctype="multipart/form-data">
@@ -87,16 +86,16 @@
                         <!-- role -->
                         <div class="form-group">
                             <label for="user role">Role</label>
-                            <select name="role" id="role_field"> 
+                            <select name="role" id="role_field">
                                 <?php
-                                    echo " <option value='$user_role'>$user_role</option>";  
+                                echo " <option value='$user_role'>$user_role</option>";
 
-                                    $roles = array('Admin','Subscriber','Author');
-                                    foreach($roles as $role){
-                                        if($role !== $user_role){
-                                            echo "<option value='$role'>$role</option>";  
-                                        }
+                                $roles = array('Admin', 'Subscriber', 'Author');
+                                foreach ($roles as $role) {
+                                    if ($role !== $user_role) {
+                                        echo "<option value='$role'>$role</option>";
                                     }
+                                }
                                 ?>
                             </select>
                         </div>
@@ -106,18 +105,18 @@
                             <label for="user status">Status</label>
                             <select name="status" id="status_field">
                                 <?php
-                                    echo " <option value='$user_status'>$user_status</option>";
+                                echo " <option value='$user_status'>$user_status</option>";
 
-                                    $statuses = array('approved','pending','denied');
-                                    foreach($statuses as $status){
-                                        if($status !== $user_status){
-                                            echo "<option value='$status'>$status</option>";  
-                                        }
+                                $statuses = array('approved', 'pending', 'denied');
+                                foreach ($statuses as $status) {
+                                    if ($status !== $user_status) {
+                                        echo "<option value='$status'>$status</option>";
                                     }
-                                ?> 
+                                }
+                                ?>
                             </select>
                         </div>
-                                    <option value="author">Author</option>
+                        <option value="author">Author</option>
                         <div class="form-group">
                             <label for="firstname">Firstname</label>
                             <input type="text" class="form-control" value="<?php echo $user_firstname; ?>" name="firstname">
@@ -145,7 +144,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary" name="edit_profile" value="Update Profile" >
+                            <input type="submit" class="btn btn-primary" name="edit_profile" value="Update Profile">
                         </div>
 
                     </form>
@@ -159,6 +158,4 @@
 </div>
 <!-- /#wrapper -->
 <!-- footer -->
-<?php include "includes/adm_foot.php";?>
-
-
+<?php include "includes/adm_foot.php"; ?>
