@@ -24,7 +24,7 @@
             </div>
 
             <div class="input-group">
-                <input type="password" class="form-control" name="password" placeholder="Enter password">
+                <input type="password" class="form-control" name="password" placeholder="Enter password" autocomplete="current-password">
                 <span class="input-group-btn">
                     <button class="btn btn-primary" name="login_btn" type="submit">Login</button>
                 </span>
