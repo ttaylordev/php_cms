@@ -4,6 +4,17 @@
 
     <!-- Navigation -->
     <?php include "includes/adm_nav.php"; ?>
+
+    <?php
+    if (isset($_GET['source'])) {
+        $source = $_GET['source'];
+
+        if ($source === 'view_users') {
+            echo "<div class='edit-grid-wrapper'>";
+        }
+    }
+
+    ?>
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
@@ -46,8 +57,14 @@
         </div>
         <!-- /.container-fluid -->
     </div>
+    <?php
+    if ($source === 'view_users') {
+        echo "</div> <!-- /#edit-grid-wrapper -->";
+    }
+    ?>
     <!-- /#page-wrapper -->
 </div>
+
 <!-- /#wrapper -->
 <!-- footer -->
 <?php include "includes/adm_foot.php"; ?>
