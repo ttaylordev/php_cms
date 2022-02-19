@@ -5,7 +5,10 @@
 <script src="js/bootstrap.min.js"></script>
 
 <!-- ns -->
-<!-- <script src="js/ns.js"></script> -->
+<script src="js/ns.js"></script>
+
+<!-- scripts.js -->
+<script src="js/scripts.js"></script>
 
 </body>
 
