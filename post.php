@@ -58,7 +58,7 @@
             <hr>
 
             <!-- Preview Image -->
-            <img class="img-responsive" src=<?php echo "./images/" . $post_image; ?> alt="">
+            <img class="img-responsive" src="<?php echo './images/' . $post_image; ?>" alt="">
 
             <hr>
 
