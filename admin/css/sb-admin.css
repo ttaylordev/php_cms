@@ -18,12 +18,16 @@ body {
     }
 }
 
+.edit-grid-wrapper {
+    width: fit-content;
+}
+
 #wrapper {
     padding-left: 0;
 }
 
 #page-wrapper {
-    width: fit-content;
+    /* width: fit-content; */
     padding: 0;
     background-color: #fff;
 }

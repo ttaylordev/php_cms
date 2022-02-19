@@ -4,6 +4,7 @@
 
     <!-- Navigation -->
     <?php include "includes/adm_nav.php"; ?>
+    <!-- wrapper -->
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
@@ -258,7 +259,6 @@
                 </script>
                 <div id="columnChart_material" style="width: 'auto'; height: 500px;"></div>
             </div>
-
         </div>
         <!-- /.container-fluid -->
     </div>

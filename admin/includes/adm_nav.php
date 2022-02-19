@@ -40,7 +40,7 @@
                 <ul id="dropOne" class="collapse">
                     <li>
                         <!-- source variable default in posts.php  -->
-                        <a href="./posts.php"><i class="fa fa-file"></i> View All Posts</a>
+                        <a href="./posts.php?source=view_posts"><i class="fa fa-file"></i> View All Posts</a>
                     </li>
                     <li>
                         <!-- sets the source variable to be used in posts.php  -->

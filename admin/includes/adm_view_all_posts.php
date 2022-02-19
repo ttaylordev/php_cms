@@ -1,3 +1,4 @@
+<!-- <div class = "edit-grid-wrapper"> -->
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -80,3 +81,4 @@
         ?>
     </tbody>
 </table>
+<!-- </div> -->
