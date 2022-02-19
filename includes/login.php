@@ -1,4 +1,4 @@
-<?php 
+<?php
 $path = $_SERVER['DOCUMENT_ROOT'] . "/cms";
 include $path . '/includes/read_file.php';
 ?>
@@ -6,9 +6,9 @@ include $path . '/includes/read_file.php';
 <?php include $path . "/includes/functions.php"; ?>
 <?php include $path . "/admin/functions.php"; ?>
 <?php session_start(); ?>
-<?php 
+<?php
 
-if(isset($_POST['login_btn'])){
+if (isset($_POST['login_btn'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -20,7 +20,7 @@ if(isset($_POST['login_btn'])){
     $select_user_query = mysqli_query($connection, $query);
     confirm_query($select_user_query);
 
-    while($row = mysqli_fetch_assoc($select_user_query)){
+    while ($row = mysqli_fetch_assoc($select_user_query)) {
         $user_id = $row['user_id'];
         $user_name = $row['user_name'];
         $user_password = $row['user_password'];
@@ -44,14 +44,13 @@ if(isset($_POST['login_btn'])){
     $_SESSION['role'] = $user_role;
     // $_SESSION['user_id'] = $user_id; //probably don't need, may be bad to reveal sql_db structure by passing id's into a session
 
-    if($username !== $user_name || $password !== $user_password){
+    if ($username !== $user_name || $password !== $user_password) {
         header("Location: ../index.php");
-    } else if($username === $user_name && $password === $user_password && $user_role === 'admin'){
+    } else if ($username === $user_name && $password === $user_password && $user_role === 'admin') {
         header("Location: ../admin");
-    } else if($username === $user_name && $password === $user_password && $user_role !== 'admin'){
+    } else if ($username === $user_name && $password === $user_password && $user_role !== 'admin') {
         header("Location: ../index.php");
     }
-
 } else {
     echo "login has failed, retry";
 }

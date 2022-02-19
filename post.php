@@ -3,7 +3,7 @@
 
 <!-- Navigation -->
 <?php include $path . "/includes/nav.php"; ?>
- <!-- /.navbar-collapse -->
+<!-- /.navbar-collapse -->
 
 <!-- Page Content -->
 <div class="container">
@@ -12,37 +12,36 @@
         <div class="col-lg-8">
             <!-- Blog Post -->
             <?php
-                // <!-- wire in a http request on ../blogposts.php -->
-                // <!-- receive in a $_POST['post_id'], the post_id -->
-                // <!-- query the row -->
-                // <!-- plug into the results -->
-                // <!-- comments could be in a loop nested -->
-                if(isset($_GET['view_by_post'])){
+            // <!-- wire in a http request on ../blogposts.php -->
+            // <!-- receive in a $_POST['post_id'], the post_id -->
+            // <!-- query the row -->
+            // <!-- plug into the results -->
+            // <!-- comments could be in a loop nested -->
+            if (isset($_GET['view_by_post'])) {
 
-                    $post_id = $_GET['view_by_post'];
-                    $query = "SELECT * FROM posts WHERE post_id = $post_id";
-                    $select_post = mysqli_query($connection, $query);
+                $post_id = $_GET['view_by_post'];
+                $query = "SELECT * FROM posts WHERE post_id = $post_id";
+                $select_post = mysqli_query($connection, $query);
 
-                    while($row = mysqli_fetch_assoc($select_post)){
+                while ($row = mysqli_fetch_assoc($select_post)) {
 
-                        // echo $row['post_id'];
-                        confirm_query($query);
+                    // echo $row['post_id'];
+                    confirm_query($query);
 
-                        $post_title = $row['post_title'];
-                        $post_author = $row['post_author'];
-                        $post_date = $row['post_date'];
-                        $post_image = $row['post_image'];
-                        $post_content = $row['post_content'];
-                        $post_id = $row['post_id'];
-                    }
-
-                } else {
-                    echo "invalid post Id"; 
+                    $post_title = $row['post_title'];
+                    $post_author = $row['post_author'];
+                    $post_date = $row['post_date'];
+                    $post_image = $row['post_image'];
+                    $post_content = $row['post_content'];
+                    $post_id = $row['post_id'];
                 }
-        
+            } else {
+                echo "invalid post Id";
+            }
+
             ?>
-<!-- echo whole block with injected variables -->
-<!-- or echo variables into block of html -->
+            <!-- echo whole block with injected variables -->
+            <!-- or echo variables into block of html -->
             <!-- Title -->
             <h1><?php echo $post_title; ?></h1>
 
@@ -59,7 +58,7 @@
             <hr>
 
             <!-- Preview Image -->
-            <img class="img-responsive" src=<?php echo "./images/" .$post_image; ?> alt="">
+            <img class="img-responsive" src=<?php echo "./images/" . $post_image; ?> alt="">
 
             <hr>
 
@@ -82,5 +81,3 @@
     <?php include "includes/foot.php"; ?>
 </div>
 <!-- /.container -->
-
-
