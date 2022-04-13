@@ -12,7 +12,7 @@
 
     <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date; ?></p>
     <hr>
-    <img class="img-responsive" src="<?php echo "./images/" . $post_image; ?>" alt="<?php echo $post_image; ?>">
+    <a href=<?php echo "post.php?view_by_post={$post_id}" ?>><img class="img-responsive"  src="<?php echo "./images/" . $post_image; ?>" alt="<?php echo $post_image; ?>"></a>
     <hr>
     <p> <?php echo $post_content; ?> </p>
     <a class="btn btn-primary" href=<?php echo "post.php?view_by_post={$post_id}" ?>>Read More <span class="glyphicon glyphicon-chevron-right"></span></a>

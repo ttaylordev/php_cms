@@ -20,6 +20,10 @@
      <title>SB Admin - Bootstrap Admin Template</title>
      <!-- Bootstrap Core CSS -->
      <link href="./css/bootstrap.min.css" rel="stylesheet">
+     <!-- summernote -->
+     <!-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> -->
+     <link rel="stylesheet" href="./css/summernote/summernote.css">
+     <!-- <link rel="stylesheet" href="css/summernote.css"> -->
      <!-- Custom CSS -->
      <link href="./css/sb-admin.css" rel="stylesheet">
      <!-- Custom Fonts -->
@@ -30,6 +34,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+
  </head>
 
  <body>
