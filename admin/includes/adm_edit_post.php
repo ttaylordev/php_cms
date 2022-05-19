@@ -2,7 +2,6 @@
 
 if (isset($_GET['p_id'])) {
     $get_p_id = $_GET['p_id'];
-
     $query = "SELECT * FROM posts WHERE post_id = $get_p_id";
     $select_posts = mysqli_query($connection, $query);
 
@@ -56,8 +55,10 @@ if (isset($_POST['edit_this_post'])) {
     $edit_posts = mysqli_query($connection, $query);
 
     confirm_query($edit_posts);
-    header("Location: posts.php?source=edit_post&p_id=$post_id");
     // success / failure modal would be nice here.
+    echo "<p>Post Updated. <a href='../post.php?view_by_post=$post_id'> View Post</a></p>";
+    // header("Location: posts.php?source=edit_post&p_id=$post_id");
+    
 }
 
 
@@ -125,7 +126,7 @@ if (isset($_POST['edit_this_post'])) {
     </div>
 
     <div class="form-group">
-        <input type="submit" class="btn btn-primary" name="edit_this_post" value="Publish">
+        <input type="submit" class="btn btn-primary" name='edit_this_post' value="Publish">
         <!-- href="posts.php?source=view" -->
     </div>
 
