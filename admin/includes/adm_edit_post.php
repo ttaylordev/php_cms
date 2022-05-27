@@ -56,7 +56,7 @@ if (isset($_POST['edit_this_post'])) {
 
     confirm_query($edit_posts);
     // success / failure modal would be nice here.
-    echo "<p>Post Updated. <a href='../post.php?view_by_post={$post_id}'> View Post</a></p>";
+    echo "<p class='bg-success'>Post Updated. <a href='../post.php?view_by_post={$post_id}'> View Post </a> or <a href='posts.php'> Edit Alternative Post</a></p>";
     // header("Location: posts.php?source=edit_post&p_id=$post_id");
     
 }
