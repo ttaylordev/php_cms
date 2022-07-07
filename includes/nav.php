@@ -23,6 +23,16 @@
                 <li>
                     <a href="admin/index.php">Admin</a>
                 </li>
+
+                <?php
+                if(isset($_SESSION['role'])){
+                    if(isset($_GET['view_by_post'])){
+                        $the_post_id = $_GET['view_by_post'];
+                        echo "<li><a href='admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit Post</a></li>";
+                    }
+                }
+                ?>
+
                 <li>
                     <a href="index.php">Home</a>
                 </li>

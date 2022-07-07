@@ -22,6 +22,7 @@
 
 <body>
     <?php
+    session_start();
     $path = $_SERVER['DOCUMENT_ROOT'] . "/cms";
     include $path . '/includes/read_file.php';
     ?>

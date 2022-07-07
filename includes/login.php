@@ -2,10 +2,11 @@
 $path = $_SERVER['DOCUMENT_ROOT'] . "/cms";
 include $path . '/includes/read_file.php';
 ?>
+
 <?php include $path . "/includes/db.php"; ?>
+<?php session_start(); ?>
 <?php include $path . "/includes/functions.php"; ?>
 <?php include $path . "/admin/functions.php"; ?>
-<?php session_start(); ?>
 <?php
 
 if (isset($_POST['login_btn'])) {
@@ -35,7 +36,7 @@ if (isset($_POST['login_btn'])) {
         $user_comment_count = $row['user_comment_count'];
         $user_views_count = $row['user_views_count'];
 
-        echo $user_email . "<br>";
+        // echo $user_email . "<br>";
     }
 
     $_SESSION['username'] = $user_name;
