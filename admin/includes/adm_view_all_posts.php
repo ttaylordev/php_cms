@@ -6,7 +6,7 @@
             $bulk_options = $_POST['bulk_options'];
 
             switch($bulk_options){
-                case 'publish':
+                case 'published':
                     $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
                     $update_to_published_status = mysqli_query($connection, $query);
                     break;
@@ -46,7 +46,7 @@
             <select class="form-control" name="bulk_options" id="action_select">
                 <!-- <option value="none" selected disabled hidden></option> -->
                 <option value="">Select Options</option>
-                <option value="publish">Publish</option>
+                <option value="published">Publish</option>
                 <option value="pending">Pending</option>
                 <option value="draft">Draft</option>
                 <option value="archive">Archive</option>
