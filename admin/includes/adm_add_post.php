@@ -38,9 +38,11 @@ if (isset($_POST['create_post'])) {
         $post_query = "INSERT INTO posts(post_cat_id, post_category, post_title, post_author, post_date, post_image, post_content, post_tags, post_status)";
         $post_query .= " VALUE({$post_category_id},'{$post_category}', '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_status}') ";
         $add_post_query = mysqli_query($connection, $post_query);
-
         confirm_query($add_post_query);
-        header("Location: posts.php?source=add_post");
+
+        $post_id = mysqli_insert_id($connection);
+        // header("Location: posts.php?source=add_post");
+        echo "<p class='bg-success'>Post created. <a href='../post.php?view_by_post={$post_id}'> View Last Post </a></p>";
     }
 } else {
     $post_status = '';
