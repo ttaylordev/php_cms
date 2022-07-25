@@ -43,14 +43,6 @@
                             include "includes/adm_edit_post.php";
                             break;
 
-                        case '54';
-                            echo "nice a 54";
-                            break;
-
-                        case '324';
-                            echo "nice a 324";
-                            break;
-
                         default:
                             include "includes/adm_view_all_posts.php";
                             break;
