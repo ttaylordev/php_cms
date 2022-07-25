@@ -57,7 +57,7 @@ if (isset($_POST['create_post'])) {
     </div>
 
     <div class="form-group">
-        <label for="Post Category"></label>
+        <label for="Post Category">Category</label>
         <br>
         <select name="post_category" id="">
             <?php
