@@ -86,7 +86,6 @@ if (isset($_POST['create_post'])) {
         <label for="post_status">Post Status</label><br>
         <select name="status" id="">
             <?php
-            echo " <option value='$post_status'>$post_status</option>";
             $statuses = array('draft', 'published', 'denied');
             foreach ($statuses as $status) {
                 if ($status !== $post_status) {
