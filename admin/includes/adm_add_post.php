@@ -1,6 +1,4 @@
 <?php
-
-
 // optional post image or url 
 
 // if 
@@ -31,9 +29,8 @@ if (isset($_POST['create_post'])) {
 
     move_uploaded_file($post_image_temp, "../images/$post_image");
 
-
     // TODO: form field validation, not just the title, but all required fields
-    // notate required fields with an asterisk or something.
+    // notate required fields with an asterisk or something in the label.
 
     if ($post_title == "" || empty($post_title)) {
         echo "This field cannot remain empty";
@@ -45,7 +42,7 @@ if (isset($_POST['create_post'])) {
         confirm_query($add_post_query);
         header("Location: posts.php?source=add_post");
     }
-}
+} else $post_status = '';
 
 ?>
 
