@@ -42,7 +42,10 @@ if (isset($_POST['create_post'])) {
         confirm_query($add_post_query);
         header("Location: posts.php?source=add_post");
     }
-} else $post_status = '';
+} else {
+    $post_status = '';
+    $post_content = '';
+}
 
 ?>
 
@@ -104,9 +107,12 @@ if (isset($_POST['create_post'])) {
     </div>
 
     <div class="form-group">
-        <label for="post_content">Post Content</label>
-        <textarea type="text" class="form-control" name="post_content" id="" cols="30" rows="10"></textarea>
+        <label for="summernote">Post Content</label>
+        <textarea type="text" class="form-control" name="post_content" id="summernote" cols="30" rows="10"><?php echo $post_content; ?></textarea>
     </div>
+    </div>
+
+
 
     <div class="form-group">
         <input type="submit" class="btn btn-primary" name="create_post" value="Publish">
