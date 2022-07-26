@@ -131,8 +131,7 @@
                         echo "
                         <td>{$post_id}</td>
                         <td>{$post_author}</td>
-                        <td>{$post_title}</td>
-
+                        <td><a href='../post.php?view_by_post={$post_id}'>{$post_title}</a></td>
                         <td>{$cat_title}</td>
                         <td>{$post_status}</td>
                         <td><img src='../images/{$post_image}' alt='{$post_image}' width='100'</td>
