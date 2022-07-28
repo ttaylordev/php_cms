@@ -11,7 +11,7 @@ if (isset($_POST['create_comment'])) {
     $comment_in_response_to = $post_id;
 
     if(!empty($comment_author) && !empty($comment_email) && !empty($comment_content) ){
-        echo "it was not empty";
+        
         $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, in_response_to_id, comment_status, comment_date) ";
         $query .= "VALUES ($post_id, '{$comment_author}', '{$comment_email}', '{$comment_content}', '{$post_id}', 'pending',now())";
 
