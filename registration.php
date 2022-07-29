@@ -30,9 +30,11 @@ if (isset($_POST["submit"])) {
         }
 
         $salt = mysqli_fetch_array($sel_randsalt_query);
+        $salt = $salt['user_randSalt'];
+        $saltedpw = crypt($salt, $password);
 
         $query = "INSERT INTO users (user_name, user_email, user_password, user_role) ";
-        $query .= "VALUES('{$username}', '{$email}', '{$password}', 'subscriber')";
+        $query .= "VALUES('{$username}', '{$email}', '{$saltedpw}', 'subscriber')";
 
         $register_user_query = mysqli_query($connection, $query);
 
