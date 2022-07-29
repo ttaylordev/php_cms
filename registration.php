@@ -12,6 +12,7 @@ if (isset($_POST["submit"])) {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
+    // form completeness conditional
     if (!empty($username) && !empty($email) && !empty($password)) {
 
         // SQL injection protective measure
@@ -23,6 +24,7 @@ if (isset($_POST["submit"])) {
         $query = "SELECT user_randSalt FROM users";
         $sel_randsalt_query = mysqli_query($connection, $query);
 
+        // salt fail check
         if (!$sel_randsalt_query) {
             die("Query failed" . mysqli_error($connection));
         }
@@ -37,7 +39,9 @@ if (isset($_POST["submit"])) {
         if (!$register_user_query) {
             die("System: Failed to register user " . mysqli_error($connection) . ' ' . mysqli_errno($connection));
         }
+        $confirmation = "Your registration has been submitted";
     } else {
+        $confirmation = '';
         echo "<script> alert('All fields must be completed');</script>";
     }
 }
@@ -57,6 +61,7 @@ if (isset($_POST["submit"])) {
                     <div class="form-wrap">
                         <h1>Register</h1>
                         <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
+                            <h6 class="text-center"><?php echo $confirmation; ?></h6>
                             <div class="form-group">
                                 <label for="username" class="sr-only">username</label>
                                 <input type="text" name="username" id="username" class="form-control" placeholder="Enter Desired Username">
