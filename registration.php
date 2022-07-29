@@ -7,31 +7,38 @@
 
 
 if (isset($_POST["submit"])) {
+
     $username = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    // SQL injection protective measure
-    $username = mysqli_real_escape_string($connection, $username);
-    $email = mysqli_real_escape_string($connection, $email);
-    $password = mysqli_real_escape_string($connection, $password);
+    if (!empty($username) && !empty($email) && !empty($password)) {
 
-    // crypt and salt
-    $query = "SELECT user_randSalt FROM users";
-    $sel_randsalt_query = mysqli_query($connection, $query);
+        // SQL injection protective measure
+        $username = mysqli_real_escape_string($connection, $username);
+        $email = mysqli_real_escape_string($connection, $email);
+        $password = mysqli_real_escape_string($connection, $password);
 
-    if (!$sel_randsalt_query) {
-        die("Query failed" . mysqli_error($connection));
-    }
+        // crypt and salt
+        $query = "SELECT user_randSalt FROM users";
+        $sel_randsalt_query = mysqli_query($connection, $query);
 
-    $salt = mysqli_fetch_array($sel_randsalt_query);
+        if (!$sel_randsalt_query) {
+            die("Query failed" . mysqli_error($connection));
+        }
 
-    $query = "INSERT INTO users (user_name, user_email, user_password, user_role) ";
-    $query .= "VALUES('{$username}', '{$email}', '{$password}', 'subscriber')";
+        $salt = mysqli_fetch_array($sel_randsalt_query);
 
-    $register_user_query = mysqli_query($connection, $query);
-    if (!$register_user_query) {
-        die("System: Failed to register user " . mysqli_error($connection) . ' ' . mysqli_errno($connection));
+        $query = "INSERT INTO users (user_name, user_email, user_password, user_role) ";
+        $query .= "VALUES('{$username}', '{$email}', '{$password}', 'subscriber')";
+
+        $register_user_query = mysqli_query($connection, $query);
+
+        if (!$register_user_query) {
+            die("System: Failed to register user " . mysqli_error($connection) . ' ' . mysqli_errno($connection));
+        }
+    } else {
+        echo "<script> alert('All fields must be completed');</script>";
     }
 }
 
