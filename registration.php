@@ -4,7 +4,7 @@
 // if(isset($_POST['register_btn'])){
 
 // }
-
+$confirmation = '';
 
 if (isset($_POST["submit"])) {
 
@@ -20,27 +20,19 @@ if (isset($_POST["submit"])) {
         $email = mysqli_real_escape_string($connection, $email);
         $password = mysqli_real_escape_string($connection, $password);
 
-        // crypt and salt
-        $query = "SELECT user_randSalt FROM users";
-        $sel_randsalt_query = mysqli_query($connection, $query);
-
-        // salt fail check
-        if (!$sel_randsalt_query) {
-            die("Query failed" . mysqli_error($connection));
-        }
-
-        $salt = mysqli_fetch_array($sel_randsalt_query);
-        $salt = $salt['user_randSalt'];
-        $saltedpw = crypt($salt, $password);
+        $hash = PASSWORD_DEFAULT; // change to blowfish
+        // $salt = "thisisa22lettersalting";
+        $cost = array('cost' => "12");
+        $hashedPw = password_hash($password, $hash, $cost);
 
         $query = "INSERT INTO users (user_name, user_email, user_password, user_role) ";
-        $query .= "VALUES('{$username}', '{$email}', '{$saltedpw}', 'subscriber')";
-
+        $query .= "VALUES('{$username}', '{$email}', '{$hashedPw}', 'subscriber')";
         $register_user_query = mysqli_query($connection, $query);
 
         if (!$register_user_query) {
             die("System: Failed to register user " . mysqli_error($connection) . ' ' . mysqli_errno($connection));
         }
+
         $confirmation = "Your registration has been submitted";
     } else {
         $confirmation = '';

@@ -17,6 +17,7 @@ if (isset($_POST['login_btn'])) {
     mysqli_real_escape_string($connection, $username);
     mysqli_real_escape_string($connection, $password);
 
+
     $query = "SELECT * FROM users WHERE user_name = '{$username}' ";
     $select_user_query = mysqli_query($connection, $query);
     confirm_query($select_user_query);
@@ -35,21 +36,27 @@ if (isset($_POST['login_btn'])) {
         $user_post_count = $row['user_post_count'];
         $user_comment_count = $row['user_comment_count'];
         $user_views_count = $row['user_views_count'];
-
-        // echo $user_email . "<br>";
     }
 
-    $_SESSION['username'] = $user_name;
-    $_SESSION['firstname'] = $user_firstname;
-    $_SESSION['lastname'] = $user_lastname;
-    $_SESSION['role'] = $user_role;
-    // $_SESSION['user_id'] = $user_id; //probably don't need, may be bad to reveal sql_db structure by passing id's into a session
+    $authenticated = password_verify($password, $user_password);
 
-    if ($username !== $user_name || $password !== $user_password) {
+    if (!$authenticated) {
+        $_SESSION['username'] = '';
+        $_SESSION['firstname'] = '';
+        $_SESSION['lastname'] = '';
+        $_SESSION['role'] = '';
         header("Location: ../index.php");
-    } else if ($username === $user_name && $password === $user_password && $user_role === 'admin') {
+    } else if ($authenticated && $user_role === 'admin') {
+        $_SESSION['username'] = $user_name;
+        $_SESSION['firstname'] = $user_firstname;
+        $_SESSION['lastname'] = $user_lastname;
+        $_SESSION['role'] = $user_role;
         header("Location: ../admin");
-    } else if ($username === $user_name && $password === $user_password && $user_role !== 'admin') {
+    } else if ($authenticated && $user_role !== 'admin') {
+        $_SESSION['username'] = $user_name;
+        $_SESSION['firstname'] = $user_firstname;
+        $_SESSION['lastname'] = $user_lastname;
+        $_SESSION['role'] = $user_role;
         header("Location: ../index.php");
     }
 } else {
