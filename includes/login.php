@@ -46,18 +46,21 @@ if (isset($_POST['login_btn'])) {
         $_SESSION['lastname'] = '';
         $_SESSION['role'] = '';
         header("Location: ../index.php");
+        // echo "one";
     } else if ($authenticated && $user_role === 'admin') {
         $_SESSION['username'] = $user_name;
         $_SESSION['firstname'] = $user_firstname;
         $_SESSION['lastname'] = $user_lastname;
         $_SESSION['role'] = $user_role;
         header("Location: ../admin");
+        // echo "two";
     } else if ($authenticated && $user_role !== 'admin') {
         $_SESSION['username'] = $user_name;
         $_SESSION['firstname'] = $user_firstname;
         $_SESSION['lastname'] = $user_lastname;
         $_SESSION['role'] = $user_role;
         header("Location: ../index.php");
+        // echo "three";
     }
 } else {
     echo "login has failed, retry";

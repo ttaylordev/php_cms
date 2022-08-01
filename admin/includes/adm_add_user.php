@@ -18,8 +18,15 @@ if (isset($_POST['add_user'])) {
     if ($user_name == "" || empty($user_name)) {
         echo "This field cannot remain empty";
     } else {
+
+        $hash = PASSWORD_DEFAULT; // change to blowfish
+        // $salt = "thisisa22lettersalting";
+        $cost = array('cost' => "12");
+        $hashedPw = password_hash($user_password, $hash, $cost);
+
+
         $user_query = "INSERT INTO users(user_name, user_firstname, user_lastname, user_date, user_image, user_email, user_role, user_status, user_password) ";
-        $user_query .= " VALUES('{$user_name}', '{$user_firstname}', '{$user_lastname}', now(), '{$user_image}', '{$user_email}', '{$user_role}', '{$user_status}', '{$user_password}') ";
+        $user_query .= " VALUES('{$user_name}', '{$user_firstname}', '{$user_lastname}', now(), '{$user_image}', '{$user_email}', '{$user_role}', '{$user_status}', '{$hashedPw}') ";
         $add_user_query = mysqli_query($connection, $user_query);
 
         confirm_query($add_user_query);
@@ -42,7 +49,7 @@ if (isset($_POST['add_user'])) {
         <select name="role" id="">
             <?php
             echo " <option value='$user_role'>$user_role</option>";
-            $roles = array('Admin', 'Subscriber', 'Author');
+            $roles = array('admin', 'subscriber', 'author');
             foreach ($roles as $role) {
                 if ($role !== $user_role) {
                     echo "<option value='$role'>$role</option>";
