@@ -4,11 +4,11 @@ if (isset($_GET['u_id'])) {
     $get_u_id = $_GET['u_id'];
 
     $query = "SELECT * FROM users WHERE user_id = $get_u_id";
-    $select_users = mysqli_query($connection, $query);
+    $select_user = mysqli_query($connection, $query);
 
-    confirm_query($select_users);
+    confirm_query($select_user);
 
-    while ($row = mysqli_fetch_assoc($select_users)) {
+    while ($row = mysqli_fetch_assoc($select_user)) {
         $user_id = $row['user_id'];
         $user_name = $row['user_name'];
         $user_firstname = $row['user_firstname'];
@@ -21,7 +21,7 @@ if (isset($_GET['u_id'])) {
         $user_post_count = $row['user_post_count'];
         $user_comment_count = $row['user_comment_count'];
         $user_views_count = $row['user_views_count'];
-        $user_password = $row['user_password'];
+        $user_password_stored = $row['user_password'];
     }
 }
 
@@ -35,7 +35,11 @@ if (isset($_POST['edit_this_user'])) {
     $user_image_temp = $_FILES['image']['tmp_name'];
     $user_role = $_POST['role'];
     $user_status = $_POST['status'];
-    $user_password = $_POST['user_password'];
+    $user_password_entered = $_POST['user_password'];
+
+    $hash = PASSWORD_DEFAULT;
+    $cost = array('cost' => "12");
+    $user_password_hashed = password_hash($user_password_entered, $hash, $cost);
 
     move_uploaded_file($user_image_temp, "../images/$user_image");
 
@@ -51,7 +55,7 @@ if (isset($_POST['edit_this_user'])) {
     $query .= "user_image = '{$user_image}', ";
     $query .= "user_role = '{$user_role}', ";
     $query .= "user_status = '{$user_status}', ";
-    $query .= "user_password = '{$user_password}' ";
+    $query .= "user_password = '{$user_password_hashed}' ";
     $query .= "WHERE user_id = {$user_id} ";
 
     $edit_users = mysqli_query($connection, $query);
@@ -112,12 +116,12 @@ if (isset($_POST['edit_this_user'])) {
     </div>
 
     <div class="form-group">
-        <label for="firstname">Lastname</label>
+        <label for="lastname">Lastname</label>
         <input type="text" class="form-control" value="<?php echo $user_lastname; ?>" name="lastname">
     </div>
 
     <div class="form-group">
-        <label for="firstname">Email</label>
+        <label for="email">Email</label>
         <input type="email" class="form-control" value="<?php echo $user_email; ?>" name="email">
     </div>
 
@@ -128,7 +132,7 @@ if (isset($_POST['edit_this_user'])) {
 
     <div class="form-group">
         <label for="user_password">Password</label>
-        <input type="password" class="form-control" name="user_password" value="<?php echo $user_password; ?>">
+        <input type="password" class="form-control" name="user_password">
         </input>
     </div>
 

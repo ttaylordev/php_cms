@@ -31,8 +31,8 @@
             $cost = array('cost' => "12");
             $hashedPw = password_hash($password, $hash, $cost);
 
-            $query = "INSERT INTO users (user_name, user_email, user_password, user_role) ";
-            $query .= "VALUES('{$username}', '{$email}', '{$hashedPw}', 'subscriber')";
+            $query = "INSERT INTO users (user_name, user_email, user_password, user_role, user_status) ";
+            $query .= "VALUES('{$username}', '{$email}', '{$hashedPw}', 'subscriber', 'approved') ";
             $register_user_query = mysqli_query($connection, $query);
 
             if (!$register_user_query) {
