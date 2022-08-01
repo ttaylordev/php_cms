@@ -1,52 +1,52 @@
 <?php include "includes/head.php"; ?>
 
-<?php
-// if(isset($_POST['register_btn'])){
-
-// }
-$confirmation = '';
-
-if (isset($_POST["submit"])) {
-
-    $username = $_POST["username"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-
-    // form completeness conditional
-    if (!empty($username) && !empty($email) && !empty($password)) {
-
-        // SQL injection protective measure
-        $username = mysqli_real_escape_string($connection, $username);
-        $email = mysqli_real_escape_string($connection, $email);
-        $password = mysqli_real_escape_string($connection, $password);
-
-        $hash = PASSWORD_DEFAULT; // change to blowfish
-        // $salt = "thisisa22lettersalting";
-        $cost = array('cost' => "12");
-        $hashedPw = password_hash($password, $hash, $cost);
-
-        $query = "INSERT INTO users (user_name, user_email, user_password, user_role) ";
-        $query .= "VALUES('{$username}', '{$email}', '{$hashedPw}', 'subscriber')";
-        $register_user_query = mysqli_query($connection, $query);
-
-        if (!$register_user_query) {
-            die("System: Failed to register user " . mysqli_error($connection) . ' ' . mysqli_errno($connection));
-        }
-
-        $confirmation = "Your registration has been submitted";
-    } else {
-        $confirmation = '';
-        echo "<script> alert('All fields must be completed');</script>";
-    }
-}
-
-?>
-
 <!-- Navigation -->
 <?php include "includes/nav.php"; ?>
 
 <!-- Page Content -->
 <div class="container">
+
+    <?php
+    // if(isset($_POST['register_btn'])){
+
+    // }
+    $confirmation = '';
+
+    if (isset($_POST["submit"])) {
+
+        $username = $_POST["username"];
+        $email = $_POST["email"];
+        $password = $_POST["password"];
+
+        // form completeness conditional
+        if (!empty($username) && !empty($email) && !empty($password)) {
+
+            // SQL injection protective measure
+            $username = mysqli_real_escape_string($connection, $username);
+            $email = mysqli_real_escape_string($connection, $email);
+            $password = mysqli_real_escape_string($connection, $password);
+
+            $hash = PASSWORD_DEFAULT; // change to blowfish
+            // $salt = "thisisa22lettersalting";
+            $cost = array('cost' => "12");
+            $hashedPw = password_hash($password, $hash, $cost);
+
+            $query = "INSERT INTO users (user_name, user_email, user_password, user_role) ";
+            $query .= "VALUES('{$username}', '{$email}', '{$hashedPw}', 'subscriber')";
+            $register_user_query = mysqli_query($connection, $query);
+
+            if (!$register_user_query) {
+                die("System: Failed to register user " . mysqli_error($connection) . ' ' . mysqli_errno($connection));
+            }
+
+            $confirmation = "Your registration has been submitted";
+        } else {
+            $confirmation = '';
+            echo "<script> alert('All fields must be completed');</script>";
+        }
+    }
+
+    ?>
 
     <section id="login">
         <div class="container">
