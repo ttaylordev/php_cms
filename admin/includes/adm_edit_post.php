@@ -25,14 +25,14 @@ if (isset($_GET['p_id'])) {
 
 if (isset($_POST['edit_this_post'])) {
 
-    $post_title = $_POST['title'];
-    $post_author = $_POST['author'];
-    $post_category_id = $_POST['post_category'];
-    $post_status = $_POST['status'];
-    $post_image_new = $_FILES['image']['name'];
-    $post_image_temp = $_FILES['image']['tmp_name'];
-    $post_tags = $_POST['post_tags'];
-    $post_content = $_POST['post_content'];
+    $q_post_title = mysqli_real_escape_string($connection, $_POST['title']);
+    $q_post_author = mysqli_real_escape_string($connection, $_POST['author']);
+    $q_post_category_id = mysqli_real_escape_string($connection, $_POST['post_category']);
+    $q_post_status = mysqli_real_escape_string($connection, $_POST['status']);
+    $post_image_new = mysqli_real_escape_string($connection, $_FILES['image']['name']);
+    $post_image_temp = mysqli_real_escape_string($connection, $_FILES['image']['tmp_name']);
+    $q_post_tags = mysqli_real_escape_string($connection, $_POST['post_tags']);
+    $q_post_content = mysqli_real_escape_string($connection, $_POST['post_content']);
 
     move_uploaded_file($post_image_temp, "../images/$post_image");
 
@@ -42,15 +42,17 @@ if (isset($_POST['edit_this_post'])) {
     }
 
     $query = "UPDATE posts SET ";
-    $query .= "post_cat_id = {$post_category_id}, ";
-    $query .= "post_title = '{$post_title}', ";
-    $query .= "post_author = '{$post_author}', ";
+    $query .= "post_cat_id = {$q_post_category_id}, ";
+    $query .= "post_title = '{$q_post_title}', ";
+    $query .= "post_author = '{$q_post_author}', ";
     $query .= "post_date = now(), ";
     $query .= "post_image = '{$post_image}', ";
-    $query .= "post_content = '{$post_content}', ";
-    $query .= "post_tags = '{$post_tags}', ";
-    $query .= "post_status = '{$post_status}' ";
+    $query .= "post_content = '{$q_post_content}', ";
+    $query .= "post_tags = '{$q_post_tags}', ";
+    $query .= "post_status = '{$q_post_status}' ";
     $query .= "WHERE post_id = {$post_id} ";
+
+    // $prepared_query = mysqli_prepare($connection, $query);
 
     $edit_posts = mysqli_query($connection, $query);
 
@@ -58,7 +60,7 @@ if (isset($_POST['edit_this_post'])) {
     // success / failure modal would be nice here.
     echo "<p class='bg-success'>Post Updated. <a href='../post.php?view_by_post={$post_id}'> View Post </a> or <a href='posts.php'> Edit Alternative Post</a></p>";
     // header("Location: posts.php?source=edit_post&p_id=$post_id");
-    
+
 }
 
 
@@ -122,7 +124,7 @@ if (isset($_POST['edit_this_post'])) {
 
     <div class="form-group">
         <label for="summernote">Post Content</label>
-        <textarea type="text" class="form-control" name="post_content" id="summernote" cols="30" rows="10"><?php echo $post_content;?></textarea>
+        <textarea type="text" class="form-control" name="post_content" id="summernote" cols="30" rows="10"><?php echo $post_content; ?></textarea>
     </div>
 
     <div class="form-group">
