@@ -1,5 +1,14 @@
 <?php include "includes/adm_head.php"; ?>
 
+<?php
+if (isset($_SESSION['role'])) {
+    if ($_SESSION['role'] === 'admin') {
+        $authenticated_admin = 'true';
+    } else {
+        header("Location: ../index.php");
+    }
+}
+?>
 <div id="wrapper">
 
     <!-- Navigation -->
@@ -19,70 +28,74 @@
             </div>
 
             <?php
-            // TODO: I should query much of this once, and store it on the a back end variable?
+            if ($authenticated_admin) {
+                // TODO: I should query much of this once, and store it on the a back end variable?
 
-            // generic counts
-            $query_posts = "SELECT COUNT(*) FROM posts";
-            $query_users = "SELECT COUNT(*) FROM users";
-            $query_comments = "SELECT COUNT(*) FROM comments";
-            $query_categories = "SELECT COUNT(*) FROM categories";
+                // generic counts
+                $query_posts = "SELECT COUNT(*) FROM posts";
+                $query_users = "SELECT COUNT(*) FROM users";
+                $query_comments = "SELECT COUNT(*) FROM comments";
+                $query_categories = "SELECT COUNT(*) FROM categories";
 
-            $posts_query_submittal = mysqli_query($connection, $query_posts);
-            $users_query_submittal = mysqli_query($connection, $query_users);
-            $comments_query_submittal = mysqli_query($connection, $query_comments);
-            $categories_query_submittal = mysqli_query($connection, $query_categories);
+                $posts_query_submittal = mysqli_query($connection, $query_posts);
+                $users_query_submittal = mysqli_query($connection, $query_users);
+                $comments_query_submittal = mysqli_query($connection, $query_comments);
+                $categories_query_submittal = mysqli_query($connection, $query_categories);
 
-            $posts_count = mysqli_fetch_assoc($posts_query_submittal)['COUNT(*)'];
-            $users_count = mysqli_fetch_assoc($users_query_submittal)['COUNT(*)'];
-            $comments_count = mysqli_fetch_assoc($comments_query_submittal)['COUNT(*)'];
-            $categories_count = mysqli_fetch_assoc($categories_query_submittal)['COUNT(*)'];
+                $posts_count = mysqli_fetch_assoc($posts_query_submittal)['COUNT(*)'];
+                $users_count = mysqli_fetch_assoc($users_query_submittal)['COUNT(*)'];
+                $comments_count = mysqli_fetch_assoc($comments_query_submittal)['COUNT(*)'];
+                $categories_count = mysqli_fetch_assoc($categories_query_submittal)['COUNT(*)'];
 
-            // post status counts
-            $query_post_draft_status = "SELECT COUNT(*) FROM posts WHERE UPPER(post_status) = UPPER('draft')";
-            $query_post_published_status = "SELECT COUNT(*) FROM posts WHERE UPPER(post_status) = UPPER('published')";
-            $query_post_denied_status = "SELECT COUNT(*) FROM posts WHERE UPPER(post_status) = UPPER('denied')";
+                // post status counts
+                $query_post_draft_status = "SELECT COUNT(*) FROM posts WHERE UPPER(post_status) = UPPER('draft')";
+                $query_post_published_status = "SELECT COUNT(*) FROM posts WHERE UPPER(post_status) = UPPER('published')";
+                $query_post_denied_status = "SELECT COUNT(*) FROM posts WHERE UPPER(post_status) = UPPER('denied')";
 
-            $post_draft_status = mysqli_query($connection, $query_post_draft_status);
-            $post_published_status = mysqli_query($connection, $query_post_published_status);
-            $post_denied_status = mysqli_query($connection, $query_post_denied_status);
+                $post_draft_status = mysqli_query($connection, $query_post_draft_status);
+                $post_published_status = mysqli_query($connection, $query_post_published_status);
+                $post_denied_status = mysqli_query($connection, $query_post_denied_status);
 
-            $post_draft_status_count = mysqli_fetch_assoc($post_draft_status)['COUNT(*)'];
-            $post_published_status_count = mysqli_fetch_assoc($post_published_status)['COUNT(*)'];
-            $post_denied_status_count = mysqli_fetch_assoc($post_denied_status)['COUNT(*)'];
+                $post_draft_status_count = mysqli_fetch_assoc($post_draft_status)['COUNT(*)'];
+                $post_published_status_count = mysqli_fetch_assoc($post_published_status)['COUNT(*)'];
+                $post_denied_status_count = mysqli_fetch_assoc($post_denied_status)['COUNT(*)'];
 
-            // comment status counts
-            $query_comment_pending_status = "SELECT COUNT(*) FROM comments WHERE UPPER(comment_status) = UPPER('pending')";
-            $comment_pending_status = mysqli_query($connection, $query_comment_pending_status);
-            $comment_pending_status_count = mysqli_fetch_assoc($comment_pending_status)['COUNT(*)'];
+                // comment status counts
+                $query_comment_pending_status = "SELECT COUNT(*) FROM comments WHERE UPPER(comment_status) = UPPER('pending')";
+                $comment_pending_status = mysqli_query($connection, $query_comment_pending_status);
+                $comment_pending_status_count = mysqli_fetch_assoc($comment_pending_status)['COUNT(*)'];
 
-            $query_comment_approved_status = "SELECT COUNT(*) FROM comments WHERE UPPER(comment_status) = UPPER('approved')";
-            $comment_approved_status = mysqli_query($connection, $query_comment_approved_status);
-            $comment_approved_status_count = mysqli_fetch_assoc($comment_approved_status)['COUNT(*)'];
+                $query_comment_approved_status = "SELECT COUNT(*) FROM comments WHERE UPPER(comment_status) = UPPER('approved')";
+                $comment_approved_status = mysqli_query($connection, $query_comment_approved_status);
+                $comment_approved_status_count = mysqli_fetch_assoc($comment_approved_status)['COUNT(*)'];
 
-            $query_comment_denied_status = "SELECT COUNT(*) FROM comments WHERE UPPER(comment_status) = UPPER('denied')";
-            $comment_denied_status = mysqli_query($connection, $query_comment_denied_status);
-            $comment_denied_status_count = mysqli_fetch_assoc($comment_denied_status)['COUNT(*)'];
+                $query_comment_denied_status = "SELECT COUNT(*) FROM comments WHERE UPPER(comment_status) = UPPER('denied')";
+                $comment_denied_status = mysqli_query($connection, $query_comment_denied_status);
+                $comment_denied_status_count = mysqli_fetch_assoc($comment_denied_status)['COUNT(*)'];
 
-            $query_subscribers = "SELECT COUNT(*) FROM users WHERE UPPER(user_status) = UPPER('subscriber')";
-            $query_subscriber_role = mysqli_query($connection, $query_subscribers);
-            $user_subscriber_count = mysqli_fetch_assoc($query_subscriber_role)['COUNT(*)'];
+                $query_subscribers = "SELECT COUNT(*) FROM users WHERE UPPER(user_status) = UPPER('subscriber')";
+                $query_subscriber_role = mysqli_query($connection, $query_subscribers);
+                $user_subscriber_count = mysqli_fetch_assoc($query_subscriber_role)['COUNT(*)'];
 
-            $query_arr = [
-                $posts_query_submittal,
-                $users_query_submittal,
-                $comments_query_submittal,
-                $categories_query_submittal,
-                $post_draft_status,
-                $query_post_published_status,
-                $query_post_denied_status,
-                $comment_pending_status,
-                $query_comment_approved_status,
-                $query_comment_denied_status,
-                $query_subscriber_role
-            ];
+                $query_arr = [
+                    $posts_query_submittal,
+                    $users_query_submittal,
+                    $comments_query_submittal,
+                    $categories_query_submittal,
+                    $post_draft_status,
+                    $query_post_published_status,
+                    $query_post_denied_status,
+                    $comment_pending_status,
+                    $query_comment_approved_status,
+                    $query_comment_denied_status,
+                    $query_subscriber_role
+                ];
 
-            foreach ($query_arr as $query) {
-                confirm_query($connection, $query);
+                foreach ($query_arr as $query) {
+                    confirm_query($connection, $query);
+                }
+            } else {
+                header("Location: ../index.php");
             }
             ?>
 
