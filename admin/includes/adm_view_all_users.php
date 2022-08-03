@@ -57,7 +57,7 @@
                 <td>'{$user_comment_count}'</td>
                 
                 <td><a href='users.php?approve={$user_id}'><i class='far fa-thumbs-up'></i> Approve</a></td> 
-                <td><a href='users.php?deny={$user_id}'><i class='far fa-thumbs-down'></i> Deny</a></td>
+                <td><a href='users.php?deny={$user_id}'><i class='far fa-thumbs-down'></i> Suspend</a></td>
                 <td><a href='users.php?source=edit_user&u_id={$user_id}'><i class='fas fa-trash'></i> Edit</a></td>
                 <td><a href='users.php?delete={$user_id}'><i class='fas fa-trash'></i> Delete</a></td>
             </tr>";
@@ -71,7 +71,7 @@
 
             $deny_user_id = $_GET['deny'];
 
-            $query = "UPDATE users SET user_status = 'denied' WHERE user_id = $deny_user_id ";
+            $query = "UPDATE users SET user_status = 'suspended' WHERE user_id = $deny_user_id ";
             $deny_query = mysqli_query($connection, $query);
 
             confirm_query($deny_query);
