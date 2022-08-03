@@ -8,8 +8,9 @@ function DisplayCategories()
     while ($row = mysqli_fetch_assoc($select_categories)) {
         $category_title = $row['cat_title'];
         $category_id = $row['cat_id'];
+        $upper_category = strtoupper($category_id);
         // echo $row;
         // print_r ($row);
-        echo "<li><a href='category.php?category=$category_id'>{$category_title}</a></li>";
+        echo "<li><a href='category.php?category=$upper_category'>{$category_title}</a></li>";
     }
 }
