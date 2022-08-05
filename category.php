@@ -16,23 +16,21 @@
                 $cat_id = $_GET['category'];
                 $query = "SELECT* FROM categories WHERE cat_id = $cat_id";
                 $select_category_name = mysqli_query($connection, $query);
+                $cat_title = mysqli_fetch_assoc($select_category_name)['cat_title'];
 
-                $cat_name = mysqli_fetch_assoc($select_category_name)['cat_title'];
-                $cat_name = ucfirst($cat_name);
-                echo "
-                        <h1 class='page-header'>
-                            $cat_name
-                            <small>Learn2Code</small>
-                        </h1>";
+                $cat_title = ucfirst($cat_title);
 
-                $query = "SELECT * FROM posts WHERE post_cat_id = $cat_id";
-                $select_all_posts = mysqli_query($connection, $query);
+                $category_tag_distinct_query = "SELECT * FROM posts WHERE post_cat_id = $cat_id OR post_tags LIKE '%{$cat_title}%' ";
 
-                if (!$select_all_posts->num_rows) {
+                $distinct_query = mysqli_query($connection, $category_tag_distinct_query);
 
-                    echo "<h3>There are no posts matching that category, please choose another.</h3>";
+                //<------ test results ----->
+                if (!$distinct_query->num_rows) {
+
+                    echo "<h3>There are no results matching those parameters.</h3>";
                 } else {
-                    while ($row = mysqli_fetch_assoc($select_all_posts)) {
+                    // var_dump(mysqli_fetch_assoc($select_all_posts));
+                    while ($row = mysqli_fetch_assoc($distinct_query)) {
                         $post_title = $row['post_title'];
                         $post_author = $row['post_author'];
                         $post_date = $row['post_date'];
@@ -46,7 +44,7 @@
                     }
                 }
 
-                if ($select_all_posts->num_rows) {
+                if ($distinct_query->num_rows) {
                     // page buttons
                     include 'includes/pager.php';
                 }
