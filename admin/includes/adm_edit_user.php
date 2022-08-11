@@ -1,5 +1,6 @@
 <?php
 
+// get user data from DB+
 if (isset($_GET['u_id'])) {
     $get_u_id = $_GET['u_id'];
 
@@ -25,6 +26,7 @@ if (isset($_GET['u_id'])) {
     }
 }
 
+// get user data from form
 if (isset($_POST['edit_this_user'])) {
 
     $user_name = $_POST['username'];
@@ -37,14 +39,16 @@ if (isset($_POST['edit_this_user'])) {
     $user_status = $_POST['status'];
     $user_password_entered = $_POST['user_password'];
 
-    $hash = PASSWORD_DEFAULT;
-    $cost = array('cost' => "12");
-    $user_password_hashed = password_hash($user_password_entered, $hash, $cost);
-
     move_uploaded_file($user_image_temp, "../images/$user_image");
 
     if (!empty($user_image_new)) {
         $user_image = $user_image_new;
+    }
+
+    if (!empty($user_password_entered)) {
+        $hash = PASSWORD_DEFAULT;
+        $cost = array('cost' => "12");
+        $user_password_hashed = password_hash($user_password_entered, $hash, $cost);
     }
 
     $query = "UPDATE users SET ";
