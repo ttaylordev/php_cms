@@ -65,7 +65,9 @@ if (isset($_POST['edit_this_user'])) {
     $edit_users = mysqli_query($connection, $query);
 
     confirm_query($edit_users);
-    header("Location: users.php?source=edit_user&u_id=$user_id");
+    echo "User {$user_name} has been updated" . " <a href='users.php'>View users</a> <br></br>";
+    // header("Location: users.php?source=edit_user&u_id=$user_id");
+
 }
 
 ?>
@@ -83,10 +85,7 @@ if (isset($_POST['edit_this_user'])) {
         <select name="role" id="">
             <?php
             echo " <option value='$user_role'>$user_role</option>";
-            // roles array
-            // for each role
-            //   if $user_role !== arr[i] 
-            //     echo option value=arr[i];
+
             $roles = array('admin', 'subscriber', 'author');
             foreach ($roles as $role) {
                 if ($role !== $user_role) {
@@ -99,7 +98,8 @@ if (isset($_POST['edit_this_user'])) {
 
     <!-- status -->
     <div class="form-group">
-        <label for="user status">Status</label><br>
+        <label for="user status">Status</label>
+        <br>
         <select name="status" id="">
             <?php
             echo " <option value='$user_status'>$user_status</option>";
@@ -112,6 +112,7 @@ if (isset($_POST['edit_this_user'])) {
             }
             ?>
         </select>
+
     </div>
     <option value="author">Author</option>
     <div class="form-group">
