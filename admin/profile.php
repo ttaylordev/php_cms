@@ -139,7 +139,7 @@
 
                         <div class="form-group">
                             <label for="user_password">Password</label>
-                            <input type="password" class="form-control" name="user_password" autocomplete="current-password" value="<?php echo $user_password; ?>">
+                            <input type="password" class="form-control" name="user_password" autocomplete="off" >
                             </input>
                         </div>
 
