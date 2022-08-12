@@ -26,7 +26,6 @@ if (isset($_GET['u_id'])) {
         $user_password_stored = $row['user_password'];
     }
 
-
     // get user data from form
     if (isset($_POST['edit_this_user'])) {
 
@@ -38,7 +37,9 @@ if (isset($_GET['u_id'])) {
         $user_image_temp = $_FILES['image']['tmp_name'];
         $user_role = $_POST['role'];
         $user_status = $_POST['status'];
-        $user_password_entered = $_POST['user_password'];
+        if (isset($_POST['user_password'])) {
+            $user_password_entered = $_POST['user_password'];
+        }
 
         move_uploaded_file($user_image_temp, "../images/$user_image");
 
@@ -59,9 +60,11 @@ if (isset($_GET['u_id'])) {
         $query_set .= "user_email = '{$user_email}', ";
         $query_set .= "user_image = '{$user_image}', ";
         $query_set .= "user_role = '{$user_role}', ";
-        $query_set .= "user_status = '{$user_status}', ";
-        $query_set .= "user_password = '{$user_password_hashed}' ";
-        $query_set .= "WHERE user_id = {$user_id} ";
+        $query_set .= "user_status = '{$user_status}'";
+        if (isset($user_password_hashed)) {
+            $query_set .= ", user_password = '{$user_password_hashed}' ";
+        }
+        $query_set .= " WHERE user_id = {$user_id} ";
 
         $edit_users_query = mysqli_query($connection, $query_set);
 

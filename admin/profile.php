@@ -38,11 +38,13 @@
         $user_email = $_POST['email'];
         $user_image_new = $_FILES['image']['name'];
         $user_image_temp = $_FILES['image']['tmp_name'];
-        if (isset($_POST['role'])) {
+        if (isset($_POST['role']) && !empty($_POST['role'])) {
             $user_role = $_POST['role'];
         }
         $user_status = $_POST['status'];
-        $user_password = $_POST['user_password'];
+        if (isset($_POST['user_password']) && !empty($_POST['user_password'])) {
+            $user_password_entered = $_POST['user_password'];
+        }
 
         move_uploaded_file($user_image_temp, "../images/$user_image");
 
@@ -50,23 +52,34 @@
             $user_image = $user_image_new;
         }
 
-        $query = "UPDATE users SET ";
-        $query .= "user_name = '{$user_name}', ";
-        $query .= "user_firstname = '{$user_firstname}', ";
-        $query .= "user_lastname = '{$user_lastname}', ";
-        $query .= "user_email = '{$user_email}', ";
-        $query .= "user_image = '{$user_image}', ";
-        if (isset($_POST['role'])) {
-            $query .= "user_role = '{$user_role}', ";
+        if (isset($user_password_entered)) {
+            $hash = PASSWORD_DEFAULT;
+            $cost = array('cost' => "12");
+            $user_password_hashed = password_hash($user_password_entered, $hash, $cost);
         }
-        $query .= "user_status = '{$user_status}', ";
-        $query .= "user_password = '{$user_password}' ";
-        $query .= "WHERE user_id = {$user_id} ";
 
-        $edit_users = mysqli_query($connection, $query);
+        $query_set = "UPDATE users SET ";
+        $query_set .= "user_name = '{$user_name}', ";
+        $query_set .= "user_firstname = '{$user_firstname}', ";
+        $query_set .= "user_lastname = '{$user_lastname}', ";
+        $query_set .= "user_email = '{$user_email}', ";
+        $query_set .= "user_image = '{$user_image}', ";
+        if (isset($_POST['role']) && !empty($_POST['role'])) {
+            $query_set .= "user_role = '{$user_role}', ";
+        }
+        $query_set .= "user_status = '{$user_status}' ";
+
+        if (isset($user_password_hashed)) {
+            $query_set .= ", user_password = '{$user_password_hashed}' ";
+        }
+        // $query_set .= "user_password = '{$user_password}' ";
+
+        $query_set .= "WHERE user_id = {$user_id} ";
+
+        $edit_users = mysqli_query($connection, $query_set);
 
         confirm_query($edit_users);
-        header("Location: users.php?source=edit_user&u_id=$user_id");
+        // header("Location: users.php?source=edit_user&u_id=$user_id");
     }
 
     ?>
@@ -91,7 +104,7 @@
                         <div class="form-group">
                             <label for="user role">Role</label>
                             <?php
-                            if ($user_role === 'admin') {
+                            if (isset($user_role) && $user_role === 'admin') {
 
                                 echo "<select name='role' id='role_field'>";
                                 echo " <option value='$user_role'>$user_role</option>";
