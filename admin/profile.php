@@ -86,18 +86,21 @@
                         <!-- role -->
                         <div class="form-group">
                             <label for="user role">Role</label>
-                            <select name="role" id="role_field">
-                                <?php
-                                echo " <option value='$user_role'>$user_role</option>";
+                            <?php
+                            if ($user_role === 'admin') {
 
+                                echo "<select name='role' id='role_field'>";
+                                echo " <option value='$user_role'>$user_role</option>";
                                 $roles = array('Admin', 'Subscriber', 'Author');
                                 foreach ($roles as $role) {
                                     if ($role !== $user_role) {
                                         echo "<option value='$role'>$role</option>";
                                     }
                                 }
-                                ?>
-                            </select>
+                                echo "</select>";
+                            }
+
+                            ?>
                         </div>
 
                         <!-- status -->
@@ -116,7 +119,7 @@
                                 ?>
                             </select>
                         </div>
-                        <option value="author">Author</option>
+
                         <div class="form-group">
                             <label for="firstname">Firstname</label>
                             <input type="text" class="form-control" value="<?php echo $user_firstname; ?>" name="firstname">
@@ -139,7 +142,7 @@
 
                         <div class="form-group">
                             <label for="user_password">Password</label>
-                            <input type="password" class="form-control" name="user_password" autocomplete="off" >
+                            <input type="password" class="form-control" name="user_password" autocomplete="off">
                             </input>
                         </div>
 
