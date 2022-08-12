@@ -2,6 +2,7 @@
 
 // get user data from DB+
 if (isset($_GET['u_id'])) {
+
     $get_u_id = $_GET['u_id'];
 
     $query = "SELECT * FROM users WHERE user_id = $get_u_id";
@@ -24,50 +25,53 @@ if (isset($_GET['u_id'])) {
         $user_views_count = $row['user_views_count'];
         $user_password_stored = $row['user_password'];
     }
-}
 
-// get user data from form
-if (isset($_POST['edit_this_user'])) {
 
-    $user_name = $_POST['username'];
-    $user_firstname = $_POST['firstname'];
-    $user_lastname = $_POST['lastname'];
-    $user_email = $_POST['email'];
-    $user_image_new = $_FILES['image']['name'];
-    $user_image_temp = $_FILES['image']['tmp_name'];
-    $user_role = $_POST['role'];
-    $user_status = $_POST['status'];
-    $user_password_entered = $_POST['user_password'];
+    // get user data from form
+    if (isset($_POST['edit_this_user'])) {
 
-    move_uploaded_file($user_image_temp, "../images/$user_image");
+        $user_name = $_POST['username'];
+        $user_firstname = $_POST['firstname'];
+        $user_lastname = $_POST['lastname'];
+        $user_email = $_POST['email'];
+        $user_image_new = $_FILES['image']['name'];
+        $user_image_temp = $_FILES['image']['tmp_name'];
+        $user_role = $_POST['role'];
+        $user_status = $_POST['status'];
+        $user_password_entered = $_POST['user_password'];
 
-    if (!empty($user_image_new)) {
-        $user_image = $user_image_new;
+        move_uploaded_file($user_image_temp, "../images/$user_image");
+
+        if (!empty($user_image_new)) {
+            $user_image = $user_image_new;
+        }
+
+        if (!empty($user_password_entered)) {
+            $hash = PASSWORD_DEFAULT;
+            $cost = array('cost' => "12");
+            $user_password_hashed = password_hash($user_password_entered, $hash, $cost);
+        }
+
+        $query = "UPDATE users SET ";
+        $query .= "user_name = '{$user_name}', ";
+        $query .= "user_firstname = '{$user_firstname}', ";
+        $query .= "user_lastname = '{$user_lastname}', ";
+        $query .= "user_email = '{$user_email}', ";
+        $query .= "user_image = '{$user_image}', ";
+        $query .= "user_role = '{$user_role}', ";
+        $query .= "user_status = '{$user_status}', ";
+        $query .= "user_password = '{$user_password_hashed}' ";
+        $query .= "WHERE user_id = {$user_id} ";
+
+        $edit_users = mysqli_query($connection, $query);
+
+        confirm_query($edit_users);
+        echo "User {$user_name} has been updated" . " <a href='users.php'>View users</a> <br></br>";
+        // header("Location: users.php?source=edit_user&u_id=$user_id");
+
     }
-
-    if (!empty($user_password_entered)) {
-        $hash = PASSWORD_DEFAULT;
-        $cost = array('cost' => "12");
-        $user_password_hashed = password_hash($user_password_entered, $hash, $cost);
-    }
-
-    $query = "UPDATE users SET ";
-    $query .= "user_name = '{$user_name}', ";
-    $query .= "user_firstname = '{$user_firstname}', ";
-    $query .= "user_lastname = '{$user_lastname}', ";
-    $query .= "user_email = '{$user_email}', ";
-    $query .= "user_image = '{$user_image}', ";
-    $query .= "user_role = '{$user_role}', ";
-    $query .= "user_status = '{$user_status}', ";
-    $query .= "user_password = '{$user_password_hashed}' ";
-    $query .= "WHERE user_id = {$user_id} ";
-
-    $edit_users = mysqli_query($connection, $query);
-
-    confirm_query($edit_users);
-    echo "User {$user_name} has been updated" . " <a href='users.php'>View users</a> <br></br>";
-    // header("Location: users.php?source=edit_user&u_id=$user_id");
-
+} else {
+    header("Location: index.php");
 }
 
 ?>
