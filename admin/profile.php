@@ -72,12 +72,9 @@
         if (isset($user_password_hashed)) {
             $query_set .= ", user_password = '{$user_password_hashed}' ";
         }
-        // $query_set .= "user_password = '{$user_password}' ";
-
         $query_set .= "WHERE user_id = {$user_id} ";
 
         $edit_users = mysqli_query($connection, $query_set);
-
         confirm_query($edit_users);
         // header("Location: users.php?source=edit_user&u_id=$user_id");
     }

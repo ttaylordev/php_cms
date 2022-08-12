@@ -1,2 +1,2 @@
-blank profile here
-<?php echo 'filler '; ?>
+
+<?php echo 'blank profile here '; ?>
