@@ -43,6 +43,47 @@
                 </li> -->
 
             </ul>
+
+            <!-- Top Menu Items -->
+            <?php
+
+            if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+
+                if (isset($_SESSION['username']) && $_SESSION['role'] == 'admin') {
+                    echo <<<END
+                        <ul class='nav navbar-right top-nav'>
+                            <li class='dropdown'>
+                                <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-user'></i>
+                        END;
+                    echo $_SESSION['username'];
+                    echo <<< EOL
+
+                        <b class='caret'></b></a>
+                        <ul class='dropdown-menu'>
+                            <li>
+                                <a href='admin/profile.php?username=
+                        EOL;
+                    echo $_SESSION['username'];
+                    echo ">";
+                    echo <<<END
+                            <i class='fa fa-fw fa-user'></i> Profile</a>
+                            </li>
+                            <li>
+                            <a href='../../cms/index.php'><i class='fa fa-fw fa-home'></i> Home</a>
+                            </li>
+                            <li class='divider'></li>
+                            <li>
+                            <a href='/cms/includes/logout.php'><i class='fa fa-fw fa-power-off'></i> Log Out</a>
+                            </li>
+                            </ul>
+                            </li>
+                            </ul>
+                        END;
+                }
+            }
+
+            ?>
+
         </div>
         <!-- /.navbar-collapse -->
     </div>
