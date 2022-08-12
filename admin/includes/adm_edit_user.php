@@ -52,20 +52,20 @@ if (isset($_GET['u_id'])) {
             $user_password_hashed = password_hash($user_password_entered, $hash, $cost);
         }
 
-        $query = "UPDATE users SET ";
-        $query .= "user_name = '{$user_name}', ";
-        $query .= "user_firstname = '{$user_firstname}', ";
-        $query .= "user_lastname = '{$user_lastname}', ";
-        $query .= "user_email = '{$user_email}', ";
-        $query .= "user_image = '{$user_image}', ";
-        $query .= "user_role = '{$user_role}', ";
-        $query .= "user_status = '{$user_status}', ";
-        $query .= "user_password = '{$user_password_hashed}' ";
-        $query .= "WHERE user_id = {$user_id} ";
+        $query_set = "UPDATE users SET ";
+        $query_set .= "user_name = '{$user_name}', ";
+        $query_set .= "user_firstname = '{$user_firstname}', ";
+        $query_set .= "user_lastname = '{$user_lastname}', ";
+        $query_set .= "user_email = '{$user_email}', ";
+        $query_set .= "user_image = '{$user_image}', ";
+        $query_set .= "user_role = '{$user_role}', ";
+        $query_set .= "user_status = '{$user_status}', ";
+        $query_set .= "user_password = '{$user_password_hashed}' ";
+        $query_set .= "WHERE user_id = {$user_id} ";
 
-        $edit_users = mysqli_query($connection, $query);
+        $edit_users_query = mysqli_query($connection, $query_set);
 
-        confirm_query($edit_users);
+        confirm_query($edit_users_query);
         echo "User {$user_name} has been updated" . " <a href='users.php'>View users</a> <br></br>";
         // header("Location: users.php?source=edit_user&u_id=$user_id");
 
