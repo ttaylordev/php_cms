@@ -21,12 +21,6 @@
                 ?>
 
                 <?php
-                if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
-                    echo "<li><a href='admin/index.php'>Admin</a></li>";
-                }
-                ?>
-
-                <?php
                 if (isset($_SESSION['role'])) {
                     if (isset($_GET['view_by_post'])) {
                         $the_post_id = $_GET['view_by_post'];
@@ -47,7 +41,7 @@
             <!-- Top Menu Items -->
             <?php
 
-            if (isset($_SESSION['role']) && isset($_SESSION['username']) && $_SESSION['role'] === 'admin') : ?>
+            if (isset($_SESSION['role']) && isset($_SESSION['username'])) : ?>
 
                 <ul class='nav navbar-right top-nav'>
                     <li class='dropdown'>
@@ -58,11 +52,14 @@
                             <b class='caret'></b>
                         </a>
                         <ul class='dropdown-menu'>
-                            <li>
-                                <a href='admin/profile.php?username=<?php echo $_SESSION['username']; ?>'>
+                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+                                echo "<li>";
+                                echo "<a href='admin/profile.php?username={$_SESSION['username']}'>";
 
-                                    <i class=' fa fa-fw fa-user'></i> Profile</a>
-                            </li>
+                                echo " <i class=' fa fa-fw fa-user'></i> Profile</a>";
+                                echo  "</li>";
+                                echo "<li><a href='admin/index.php'>Admin</a></li>";
+                            } ?>
                             <li>
                                 <a href='../../cms/index.php'><i class='fa fa-fw fa-home'></i> Home</a>
                             </li>
