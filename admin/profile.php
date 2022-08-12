@@ -38,7 +38,9 @@
         $user_email = $_POST['email'];
         $user_image_new = $_FILES['image']['name'];
         $user_image_temp = $_FILES['image']['tmp_name'];
-        $user_role = $_POST['role'];
+        if (isset($_POST['role'])) {
+            $user_role = $_POST['role'];
+        }
         $user_status = $_POST['status'];
         $user_password = $_POST['user_password'];
 
@@ -54,7 +56,9 @@
         $query .= "user_lastname = '{$user_lastname}', ";
         $query .= "user_email = '{$user_email}', ";
         $query .= "user_image = '{$user_image}', ";
-        $query .= "user_role = '{$user_role}', ";
+        if (isset($_POST['role'])) {
+            $query .= "user_role = '{$user_role}', ";
+        }
         $query .= "user_status = '{$user_status}', ";
         $query .= "user_password = '{$user_password}' ";
         $query .= "WHERE user_id = {$user_id} ";
@@ -91,7 +95,7 @@
 
                                 echo "<select name='role' id='role_field'>";
                                 echo " <option value='$user_role'>$user_role</option>";
-                                $roles = array('Admin', 'Subscriber', 'Author');
+                                $roles = array('admin', 'subscriber', 'author');
                                 foreach ($roles as $role) {
                                     if ($role !== $user_role) {
                                         echo "<option value='$role'>$role</option>";
