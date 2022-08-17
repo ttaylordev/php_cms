@@ -20,7 +20,6 @@
             $user_lastname = $row['user_lastname'];
             $user_email = $row['user_email'];
             $user_image = $row['user_image'];
-            $user_role = $row['user_role'];
             $user_date = $row['user_date'];
             $user_status = $row['user_status'];
             $user_post_count = $row['user_post_count'];
@@ -38,9 +37,6 @@
         $user_email = $_POST['email'];
         $user_image_new = $_FILES['image']['name'];
         $user_image_temp = $_FILES['image']['tmp_name'];
-        if (isset($_POST['role']) && !empty($_POST['role'])) {
-            $user_role = $_POST['role'];
-        }
         $user_status = $_POST['status'];
         if (isset($_POST['user_password']) && !empty($_POST['user_password'])) {
             $user_password_entered = $_POST['user_password'];
@@ -64,9 +60,6 @@
         $query_set .= "user_lastname = '{$user_lastname}', ";
         $query_set .= "user_email = '{$user_email}', ";
         $query_set .= "user_image = '{$user_image}', ";
-        if (isset($_POST['role']) && !empty($_POST['role'])) {
-            $query_set .= "user_role = '{$user_role}', ";
-        }
         $query_set .= "user_status = '{$user_status}' ";
 
         if (isset($user_password_hashed)) {
@@ -95,26 +88,6 @@
                         <div class="form-group">
                             <label for="user_name">Username</label>
                             <input type="text" class="form-control" name="username" autocomplete="username" value="<?php echo $user_name; ?>">
-                        </div>
-
-                        <!-- role -->
-                        <div class="form-group">
-                            <label for="user role">Role</label>
-                            <?php
-                            if (isset($user_role) && $user_role === 'admin') {
-
-                                echo "<select name='role' id='role_field'>";
-                                echo " <option value='$user_role'>$user_role</option>";
-                                $roles = array('admin', 'subscriber', 'author');
-                                foreach ($roles as $role) {
-                                    if ($role !== $user_role) {
-                                        echo "<option value='$role'>$role</option>";
-                                    }
-                                }
-                                echo "</select>";
-                            }
-
-                            ?>
                         </div>
 
                         <!-- status -->
