@@ -1,38 +1,38 @@
 <!-- <div class = "edit-grid-wrapper"> -->
 <?php
 
-    if(isset($_POST['checkBoxArray'])){
-        foreach($_POST['checkBoxArray'] as $post_value_id){
-            $bulk_options = $_POST['bulk_options'];
+if (isset($_POST['checkBoxArray'])) {
+    foreach ($_POST['checkBoxArray'] as $post_value_id) {
+        $bulk_options = $_POST['bulk_options'];
 
-            switch($bulk_options){
-                case 'published':
-                    $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
-                    $update_to_published_status = mysqli_query($connection, $query);
-                    break;
+        switch ($bulk_options) {
+            case 'published':
+                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
+                $update_to_published_status = mysqli_query($connection, $query);
+                break;
 
-                case 'pending':
-                    $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
-                    $update_to_published_status = mysqli_query($connection, $query);
-                    break;
+            case 'pending':
+                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
+                $update_to_published_status = mysqli_query($connection, $query);
+                break;
 
-                case 'draft':
-                    $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
-                    $update_to_published_status = mysqli_query($connection, $query);
-                    break;  
+            case 'draft':
+                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
+                $update_to_published_status = mysqli_query($connection, $query);
+                break;
 
-                case 'archive':
-                    $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
-                    $update_to_published_status = mysqli_query($connection, $query);
-                    break;
+            case 'archive':
+                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
+                $update_to_published_status = mysqli_query($connection, $query);
+                break;
 
-                case 'deny':
-                    $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
-                    $update_to_published_status = mysqli_query($connection, $query);
-                    break;
-            }
+            case 'deny':
+                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
+                $update_to_published_status = mysqli_query($connection, $query);
+                break;
         }
     }
+}
 
 ?>
 
@@ -111,7 +111,7 @@
                     $post_image = $row['post_image'];
                     $post_tags = $row['post_tags'];
                     $post_date = $row['post_date'];
-                    $post_comment_count = $row['post_comment_count'];
+                    // $post_comment_count = $row['post_comment_count'];
                     $post_views_count = $row['post_views_count'];
                     $post_content = $row['post_content'];
 
@@ -121,13 +121,17 @@
                     while ($row = mysqli_fetch_assoc($select_update_cat_id)) {
                         $cat_title = $row['cat_title'];
                         $cat_id = $row['cat_id'];
-                        
-                        echo "<tr>";
-                        ?>
 
-            <td><input type="checkbox" name="checkBoxArray[]" class="checkBoxes" value='<?php echo $post_id; ?>'></td>
+                        echo "<tr>";
+            ?>
+
+                        <td><input type="checkbox" name="checkBoxArray[]" class="checkBoxes" value='<?php echo $post_id; ?>'></td>
 
             <?php
+                        $comment_query = "SELECT * FROM comments WHERE comment_post_id = $post_id";
+                        $send_comment_query = mysqli_query($connection, $comment_query);
+                        $count_comments = mysqli_num_rows(($send_comment_query));
+                        
                         echo "
                         <td>{$post_id}</td>
                         <td>{$post_author}</td>
@@ -136,11 +140,12 @@
                         <td>{$post_status}</td>
                         <td><img src='../images/{$post_image}' alt='{$post_image}' width='100'</td>
                         <td>{$post_tags}</td>
-                        <td>{$post_comment_count}</td>
+                        <td>$count_comments</td>
                         <td>{$post_date}</td>
                         <td><a href='posts.php?source=edit_post&p_id={$post_id}'><i class='far fa-edit'></i> Edit</a></td> 
                         <td><a href='posts.php?delete={$post_id}'> Delete</a></td>
-                    </tr>";
+                        </tr>";
+                        // echo "<td>{$post_comment_count}</td>";
                     } // the & divides values for multiple parameters
                 }
             }

@@ -29,14 +29,14 @@
         } else {
 
             while ($row = mysqli_fetch_assoc($get_all_comments)) {
-                $comment_id = $row['comment_id']; //
-                $comment_author = $row['comment_author']; //
-                $comment_email = $row['comment_email']; //
-                $comment_status = $row['comment_status']; //
-                $comment_post_id = $row['comment_post_id']; //
-                $comment_date = $row['comment_date']; //
-                $comment_content = $row['comment_content']; //
-                $comment_in_response_to = $row['in_response_to_id']; //
+                $comment_id = $row['comment_id'];
+                $comment_author = $row['comment_author'];
+                $comment_email = $row['comment_email'];
+                $comment_status = $row['comment_status'];
+                $comment_post_id = $row['comment_post_id'];
+                $comment_date = $row['comment_date'];
+                $comment_content = $row['comment_content'];
+                $comment_in_response_to = $row['in_response_to_id'];
                 $comment_post_id = $row['comment_post_id'];
 
                 $post_query = "SELECT * FROM posts WHERE post_id = $comment_post_id ";
