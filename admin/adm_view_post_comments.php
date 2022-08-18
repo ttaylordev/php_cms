@@ -16,16 +16,16 @@
                         <br>
 
                         <?php
-                        if (isset($_GET['id'])) {
-                            $post_id = mysqli_real_escape_string($connection, $_GET['id']);
+                        // if (isset($_GET['id'])) {
+                        //     $post_id = mysqli_real_escape_string($connection, $_GET['id']);
 
-                            $id_title_query = "SELECT post_title FROM posts WHERE post_id = $post_id";
-                            $get_post_title = mysqli_query($connection, $id_title_query);
-                            $fetched_title = mysqli_fetch_object($get_post_title);
-                            $post_title = ucfirst($fetched_title->post_title);
+                        //     $id_title_query = "SELECT post_title FROM posts WHERE post_id = $post_id";
+                        //     $get_post_title = mysqli_query($connection, $id_title_query);
+                        //     $fetched_title = mysqli_fetch_object($get_post_title);
+                        //     $post_title = ucfirst($fetched_title->post_title);
 
-                            echo "<h3> $post_title</h3>";
-                        }
+                        //     echo "<h3> $post_title</h3>";
+                        // }
 
                         ?>
                     </h1>
@@ -93,10 +93,10 @@
                                             <td><?php echo $comment_email ?></td>
                                             <td><?php echo $comment_status ?></td>
 
-                                            <td><a href='comments.php?approve={$comment_id}'><i class='far fa-thumbs-up'></i> Approve</a></td>
-                                            <td><a href='comments.php?deny={$comment_id}'><i class='far fa-thumbs-down'></i> Deny</a></td>
-                                            <td><a href='comments.php?source=edit_comment&c_id={$comment_id}'><i class='fas fa-trash'></i> Edit</a></td>
-                                            <td><a href='comments.php?delete={$comment_id}'><i class='fas fa-trash'></i> Delete</a></td>
+                                            <td><a href="adm_view_post_comments.php?approve=<?php echo $comment_id?>&id=<?php echo $_GET['id']?>"><i class='far fa-thumbs-up'></i> Approve</a></td>
+                                            <td><a href="adm_view_post_comments.php?deny=<?php echo $comment_id ?>&id=<?php echo $_GET['id']?>"><i class='far fa-thumbs-down'></i> Deny</a></td>
+                                            <td><a href="adm_view_post_comments.php?source=edit_comment&c_id=<?php echo $comment_id ?>"><i class='fas fa-trash'></i> Edit</a></td>
+                                            <td><a href="adm_view_post_comments.php?delete=<?php echo $comment_id ?>&id=<?php echo $_GET['id']?>"><i class='fas fa-trash'></i> Delete</a></td>
                                         </tr>
                                     <?php endwhile; ?>
                                     <!-- // the & divides values for multiple parameters -->
@@ -114,20 +114,19 @@
 
                                 confirm_query($deny_query);
                                 // reload the page
-                                header("Location: comments.php");
+                                header("Location: adm_view_post_comments.php?id=" . $_GET['id'] ."");
                             }
 
                             if (isset($_GET['approve'])) {
 
                                 $approve_comment_id = $_GET['approve'];
-                                // echo "<br>" . $approve_comment_id; // echo's won't work here because of the refresh.
 
                                 $query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id = $approve_comment_id ";
                                 $approve_query = mysqli_query($connection, $query);
 
                                 confirm_query($approve_query);
                                 // reload the page
-                                header("Location: comments.php");
+                                header("Location: adm_view_post_comments.php?id=" . $_GET['id'] ."");
                             }
 
                             if (isset($_GET['delete'])) {
@@ -139,7 +138,7 @@
 
                                 confirm_query($delete_query);
                                 // reload the page
-                                header("Location: comments.php");
+                                header("Location: adm_view_post_comments.php?id=" . $_GET['id'] ."");
                             }
 
                             ?>
