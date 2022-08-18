@@ -130,8 +130,13 @@ if (isset($_POST['checkBoxArray'])) {
             <?php
                         $comment_query = "SELECT * FROM comments WHERE comment_post_id = $post_id";
                         $send_comment_query = mysqli_query($connection, $comment_query);
+
                         $count_comments = mysqli_num_rows(($send_comment_query));
-                        
+
+                        $row = mysqli_fetch_array($send_comment_query);
+
+                        $comment_id = $row['comment_id'] ?? '';
+
                         echo "
                         <td>{$post_id}</td>
                         <td>{$post_author}</td>
@@ -140,12 +145,11 @@ if (isset($_POST['checkBoxArray'])) {
                         <td>{$post_status}</td>
                         <td><img src='../images/{$post_image}' alt='{$post_image}' width='100'</td>
                         <td>{$post_tags}</td>
-                        <td>$count_comments</td>
+                        <td><a href='./adm_view_post_comments.php?id=$post_id'>$count_comments</a></td>
                         <td>{$post_date}</td>
                         <td><a href='posts.php?source=edit_post&p_id={$post_id}'><i class='far fa-edit'></i> Edit</a></td> 
                         <td><a href='posts.php?delete={$post_id}'> Delete</a></td>
                         </tr>";
-                        // echo "<td>{$post_comment_count}</td>";
                     } // the & divides values for multiple parameters
                 }
             }
