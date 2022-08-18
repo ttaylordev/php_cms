@@ -14,10 +14,10 @@
                     <h1 class="page-header">
                         Comments
                         <br>
-                        
+
                         <?php
                         if (isset($_GET['id'])) {
-                            $post_id = $_GET['id'];
+                            $post_id = mysqli_real_escape_string($connection, $_GET['id']);
 
                             $id_title_query = "SELECT post_title FROM posts WHERE post_id = $post_id";
                             $get_post_title = mysqli_query($connection, $id_title_query);
@@ -39,7 +39,6 @@
                                 <th>Date</th>
                                 <th>Email</th>
                                 <th>Status</th>
-                                <th>In Response to</th>
                                 <th>Approve</th>
                                 <th>Deny</th>
                                 <th>Edit</th>
@@ -50,57 +49,59 @@
 
                             <?php
 
-                            $query = "SELECT * FROM comments WHERE comment_post_id =" . mysqli_real_escape_string($connection, $_GET['id']);
-                            $get_all_comments = mysqli_query($connection, $query);
+                            if (isset($_GET['id'])) :
 
-                            $post_id = '';
+                                $query = "SELECT * FROM comments WHERE comment_post_id =" . mysqli_real_escape_string($connection, $_GET['id']);
+                                $get_all_comments = mysqli_query($connection, $query);
 
-                            if (!$get_all_comments) {
-                                echo "Query unsuccessful";
-                            } else {
+                                $post_id = '';
 
-                                while ($row = mysqli_fetch_assoc($get_all_comments)) {
-                                    $comment_id = $row['comment_id'];
-                                    $comment_author = $row['comment_author'];
-                                    $comment_email = $row['comment_email'];
-                                    $comment_status = $row['comment_status'];
-                                    $comment_post_id = $row['comment_post_id'];
-                                    $comment_date = $row['comment_date'];
-                                    $comment_content = $row['comment_content'];
-                                    $comment_in_response_to = $row['in_response_to_id'];
-                                    $comment_post_id = $row['comment_post_id'];
+                                if (!$get_all_comments) {
+                                    echo "Query unsuccessful";
+                                } else {
 
-                                    $post_query = "SELECT * FROM posts WHERE post_id = $comment_post_id ";
-                                    $get_post_id = mysqli_query($connection, $post_query);
+                                    while ($row = mysqli_fetch_assoc($get_all_comments)) :
+                                        $comment_id = $row['comment_id'];
+                                        $comment_author = $row['comment_author'];
+                                        $comment_email = $row['comment_email'];
+                                        $comment_status = $row['comment_status'];
+                                        $comment_post_id = $row['comment_post_id'];
+                                        $comment_date = $row['comment_date'];
+                                        $comment_content = $row['comment_content'];
+                                        $comment_in_response_to = $row['in_response_to_id'];
+                                        $comment_post_id = $row['comment_post_id'];
 
-                                    if (!$get_post_id) {
-                                        echo "Post ID query failed" . mysqli_error($connection);
-                                    } else {
-                                        while ($row = mysqli_fetch_assoc($get_post_id)) {
-                                            $post_id = $row['post_id'];
-                                            $post_title = $row['post_title'];
-                                            $comment_in_response_to = $row['post_title'];
+                                        $post_query = "SELECT * FROM posts WHERE post_id = $comment_post_id ";
+                                        $get_post_id = mysqli_query($connection, $post_query);
+
+                                        if (!$get_post_id) {
+                                            echo "Post ID query failed" . mysqli_error($connection);
+                                        } else {
+                                            while ($row = mysqli_fetch_assoc($get_post_id)) {
+                                                $post_id = $row['post_id'];
+                                                $post_title = $row['post_title'];
+                                                $comment_in_response_to = $row['post_title'];
+                                            }
                                         }
-                                    }
-
-                                    echo
-                                    "<tr>
-                                        <td>'{$comment_id}'</td>
-                                        <td>'{$comment_author}'</td>
-                                        <td>'{$comment_content}'</td>
-                                        <td>'{$comment_date}'</td>
-                                        <td>'{$comment_email}'</td>
-                                        <td>'{$comment_status}'</td>
-                                        <td>'<a href='../post.php?view_by_post={$post_id}'</a>{$comment_in_response_to}</td>
-                                        
-                                        <td><a href='comments.php?approve={$comment_id}'><i class='far fa-thumbs-up'></i> Approve</a></td> 
-                                        <td><a href='comments.php?deny={$comment_id}'><i class='far fa-thumbs-down'></i> Deny</a></td>
-                                        <td><a href='comments.php?source=edit_comment&c_id={$comment_id}'><i class='fas fa-trash'></i> Edit</a></td>
-                                        <td><a href='comments.php?delete={$comment_id}'><i class='fas fa-trash'></i> Delete</a></td>
-                                    </tr>";
-                                } // the & divides values for multiple parameters
-                            }
                             ?>
+
+                                        <tr>
+                                            <td><?php echo $comment_id ?></td>
+                                            <td><?php echo $comment_author ?></td>
+                                            <td><?php echo $comment_content ?></td>
+                                            <td><?php echo $comment_date ?></td>
+                                            <td><?php echo $comment_email ?></td>
+                                            <td><?php echo $comment_status ?></td>
+
+                                            <td><a href='comments.php?approve={$comment_id}'><i class='far fa-thumbs-up'></i> Approve</a></td>
+                                            <td><a href='comments.php?deny={$comment_id}'><i class='far fa-thumbs-down'></i> Deny</a></td>
+                                            <td><a href='comments.php?source=edit_comment&c_id={$comment_id}'><i class='fas fa-trash'></i> Edit</a></td>
+                                            <td><a href='comments.php?delete={$comment_id}'><i class='fas fa-trash'></i> Delete</a></td>
+                                        </tr>
+                                    <?php endwhile; ?>
+                                    <!-- // the & divides values for multiple parameters -->
+                                <?php } ?>
+                            <?php endif; ?>
 
                             <?php
 
@@ -128,7 +129,6 @@
                                 // reload the page
                                 header("Location: comments.php");
                             }
-
 
                             if (isset($_GET['delete'])) {
 
