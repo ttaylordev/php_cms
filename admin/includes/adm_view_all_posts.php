@@ -59,20 +59,6 @@ if (isset($_POST['checkBoxArray'])) {
             <input type="submit" name="submit" class="btn btn-success" value="Apply">
             <a href="posts.php?source=add_post" class="btn btn-primary">Add New</a>
         </div>
-        <!-- 
-        <div id="bulkOptionsContainer" class="col-xs-4">
-            <label for="filter-by">Filter posts by..</label>
-
-            <select class="form-control" name="filterBy" id="filter-by">
-                // <option value="none" selected disabled hidden></option>
-                <option value="all">All</option>
-                <option value="published">Published</option>
-                <option value="pending">Pending</option>
-                <option value="Draft">Draft</option>
-                <option value="denied">Denied</option>
-            </select>
-
-        </div> -->
 
         <thead>
             <tr>
@@ -111,7 +97,6 @@ if (isset($_POST['checkBoxArray'])) {
                     $post_image = $row['post_image'];
                     $post_tags = $row['post_tags'];
                     $post_date = $row['post_date'];
-                    // $post_comment_count = $row['post_comment_count'];
                     $post_views_count = $row['post_views_count'];
                     $post_content = $row['post_content'];
 

@@ -12,7 +12,7 @@
                 <div class="col-lg-12">
 
                     <h1 class="page-header">
-                        Welcome Admin
+                        Comments
                     </h1>
 
                     <?php

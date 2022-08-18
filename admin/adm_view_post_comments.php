@@ -12,7 +12,22 @@
                 <div class="col-lg-12">
 
                     <h1 class="page-header">
-                        Welcome Admin
+                        Comments
+                        <br>
+                        
+                        <?php
+                        if (isset($_GET['id'])) {
+                            $post_id = $_GET['id'];
+
+                            $id_title_query = "SELECT post_title FROM posts WHERE post_id = $post_id";
+                            $get_post_title = mysqli_query($connection, $id_title_query);
+                            $fetched_title = mysqli_fetch_object($get_post_title);
+                            $post_title = ucfirst($fetched_title->post_title);
+
+                            echo "<h3> $post_title</h3>";
+                        }
+
+                        ?>
                     </h1>
 
                     <table class="table table-bordered table-hover">
