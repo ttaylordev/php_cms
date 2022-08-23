@@ -63,7 +63,7 @@
                 
                 <td><a href='comments.php?approve={$comment_id}'><i class='far fa-thumbs-up'></i> Approve</a></td> 
                 <td><a href='comments.php?deny={$comment_id}'><i class='far fa-thumbs-down'></i> Deny</a></td>
-                <td><a href='comments.php?delete={$comment_id}'><i class='fas fa-trash'></i> Delete</a></td>
+                <td><a onClick=\"javascript: return confirm('Delete post?'); \" href='comments.php?delete={$comment_id}'><i class='fas fa-trash'></i> Delete</a></td>
             </tr>";
             } // the & divides values for multiple parameters
         }
