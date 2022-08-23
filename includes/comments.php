@@ -4,9 +4,9 @@ if (isset($_POST['create_comment'])) {
 
     $post_id = $_GET['view_by_post'];
 
-    $comment_author = $_POST['comment_author'];
-    $comment_email = $_POST['comment_email']; //
-    $comment_content = $_POST['comment_content'];
+    $comment_author = mysqli_real_escape_string($connection, $_POST['comment_author']);
+    $comment_email = mysqli_real_escape_string($connection, $_POST['comment_email']); //
+    $comment_content = mysqli_real_escape_string($connection, $_POST['comment_content']);
     $comment_in_response_to = $post_id;
 
     if (!empty($comment_author) && !empty($comment_email) && !empty($comment_content)) {
