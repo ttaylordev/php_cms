@@ -29,10 +29,6 @@
                             include "includes/adm_add_comment.php";
                             break;
 
-                        case 'edit_comment';
-                            include "includes/adm_edit_comment.php";
-                            break;
-
                         case 'view_comments';
                             include "includes/adm_view_all_comments.php";
                             break;

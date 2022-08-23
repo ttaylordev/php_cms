@@ -10,7 +10,6 @@
             <th>In Response to</th>
             <th>Approve</th>
             <th>Deny</th>
-            <th>Edit</th>
             <th>Delete</th>
 
         </tr>
@@ -64,7 +63,6 @@
                 
                 <td><a href='comments.php?approve={$comment_id}'><i class='far fa-thumbs-up'></i> Approve</a></td> 
                 <td><a href='comments.php?deny={$comment_id}'><i class='far fa-thumbs-down'></i> Deny</a></td>
-                <td><a href='comments.php?source=edit_comment&c_id={$comment_id}'><i class='fas fa-trash'></i> Edit</a></td>
                 <td><a href='comments.php?delete={$comment_id}'><i class='fas fa-trash'></i> Delete</a></td>
             </tr>";
             } // the & divides values for multiple parameters

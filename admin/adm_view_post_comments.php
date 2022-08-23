@@ -41,7 +41,6 @@
                                 <th>Status</th>
                                 <th>Approve</th>
                                 <th>Deny</th>
-                                <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -95,7 +94,6 @@
 
                                             <td><a href="adm_view_post_comments.php?approve=<?php echo $comment_id?>&id=<?php echo $_GET['id']?>"><i class='far fa-thumbs-up'></i> Approve</a></td>
                                             <td><a href="adm_view_post_comments.php?deny=<?php echo $comment_id ?>&id=<?php echo $_GET['id']?>"><i class='far fa-thumbs-down'></i> Deny</a></td>
-                                            <td><a href="comments.php?source=edit_comment&c_id=<?php echo $comment_id ?>"><i class='fas fa-trash'></i> Edit</a></td>
                                             <td><a href="adm_view_post_comments.php?delete=<?php echo $comment_id ?>&id=<?php echo $_GET['id']?>"><i class='fas fa-trash'></i> Delete</a></td>
                                         </tr>
                                     <?php endwhile; ?>
