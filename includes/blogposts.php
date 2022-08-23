@@ -7,7 +7,8 @@
 
     <p class="lead">
         <!-- source variable passing the authors name or id -->
-        by <a href="includes/profile.php"><?php echo $post_author; ?></a>
+        <!-- <?php echo $post_author; ?> -->
+        by <a href="author_posts.php?view_by_author=<?php echo $post_author ?>&view_by_post=<?php echo $post_id ?>"><?php echo $post_author; ?></a>
     </p>
 
     <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date; ?></p>

@@ -20,7 +20,7 @@
             if (isset($_GET['view_by_post'])) {
 
                 $post_id = $_GET['view_by_post'];
-                $query = "SELECT * FROM posts WHERE post_id = $post_id";
+                $query = "SELECT * FROM posts WHERE post_id = '{$post_id}'";
                 $select_post = mysqli_query($connection, $query);
                 confirm_query($query);
 
