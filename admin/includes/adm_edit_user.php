@@ -5,8 +5,8 @@ if (isset($_GET['u_id'])) {
 
     $get_u_id = $_GET['u_id'];
 
-    $query = "SELECT * FROM users WHERE user_id = $get_u_id";
-    $select_user = mysqli_query($connection, $query);
+    $get_user_query = "SELECT * FROM users WHERE user_id = $get_u_id";
+    $select_user = mysqli_query($connection, $get_user_query);
 
     confirm_query($select_user);
 
