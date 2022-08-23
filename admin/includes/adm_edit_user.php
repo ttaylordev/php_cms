@@ -29,16 +29,16 @@ if (isset($_GET['u_id'])) {
     // get user data from form
     if (isset($_POST['edit_this_user'])) {
 
-        $user_name = $_POST['username'];
-        $user_firstname = $_POST['firstname'];
-        $user_lastname = $_POST['lastname'];
-        $user_email = $_POST['email'];
+        $user_name = mysqli_real_escape_string($connection, $_POST['username']);
+        $user_firstname = mysqli_real_escape_string($connection, $_POST['firstname']);
+        $user_lastname = mysqli_real_escape_string($connection, $_POST['lastname']);
+        $user_email = mysqli_real_escape_string($connection, $_POST['email']);
         $user_image_new = $_FILES['image']['name'];
         $user_image_temp = $_FILES['image']['tmp_name'];
-        $user_role = $_POST['role'];
-        $user_status = $_POST['status'];
+        $user_role = mysqli_real_escape_string($connection, $_POST['role']);
+        $user_status = mysqli_real_escape_string($connection, $_POST['status']);
         if (isset($_POST['user_password'])) {
-            $user_password_entered = $_POST['user_password'];
+            $user_password_entered =  mysqli_real_escape_string($connection, $_POST['user_password']);
         }
 
         move_uploaded_file($user_image_temp, "../images/$user_image");
