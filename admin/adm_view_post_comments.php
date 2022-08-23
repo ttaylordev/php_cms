@@ -94,7 +94,7 @@
 
                                             <td><a href="adm_view_post_comments.php?approve=<?php echo $comment_id?>&id=<?php echo $_GET['id']?>"><i class='far fa-thumbs-up'></i> Approve</a></td>
                                             <td><a href="adm_view_post_comments.php?deny=<?php echo $comment_id ?>&id=<?php echo $_GET['id']?>"><i class='far fa-thumbs-down'></i> Deny</a></td>
-                                            <td><a href="adm_view_post_comments.php?delete=<?php echo $comment_id ?>&id=<?php echo $_GET['id']?>"><i class='fas fa-trash'></i> Delete</a></td>
+                                            <td><a onClick="javascript: return confirm('Delete post?');" href="adm_view_post_comments.php?delete=<?php echo $comment_id ?>&id=<?php echo $_GET['id']?>"><i class='fas fa-trash'></i> Delete</a></td>
                                         </tr>
                                     <?php endwhile; ?>
                                     <!-- // the & divides values for multiple parameters -->

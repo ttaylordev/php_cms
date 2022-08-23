@@ -59,7 +59,7 @@
                 <td><a href='users.php?approve={$user_id}'><i class='far fa-thumbs-up'></i> Approve</a></td> 
                 <td><a href='users.php?deny={$user_id}'><i class='far fa-thumbs-down'></i> Suspend</a></td>
                 <td><a href='users.php?source=edit_user&u_id={$user_id}'><i class='fas fa-trash'></i> Edit</a></td>
-                <td><a href='users.php?delete={$user_id}'><i class='fas fa-trash'></i> Delete</a></td>
+                <td><a onClick=\"javascript: return confirm('Delete post?'); \" href='users.php?delete={$user_id}'><i class='fas fa-trash'></i> Delete</a></td>
             </tr>";
             }
         }
