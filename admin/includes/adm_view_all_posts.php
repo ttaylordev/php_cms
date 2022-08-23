@@ -133,7 +133,7 @@ if (isset($_POST['checkBoxArray'])) {
                         <td><a href='./adm_view_post_comments.php?id=$post_id'>$count_comments</a></td>
                         <td>{$post_date}</td>
                         <td><a href='posts.php?source=edit_post&p_id={$post_id}'><i class='far fa-edit'></i> Edit</a></td> 
-                        <td><a href='posts.php?delete={$post_id}'> Delete</a></td>
+                        <td><a onClick=\"javascript: return confirm('Delete post?'); \"href='posts.php?delete={$post_id}'> Delete</a></td>
                         </tr>";
                     } // the & divides values for multiple parameters
                 }
