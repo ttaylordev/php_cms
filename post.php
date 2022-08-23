@@ -22,11 +22,11 @@
                 $post_id = $_GET['view_by_post'];
                 $query = "SELECT * FROM posts WHERE post_id = $post_id";
                 $select_post = mysqli_query($connection, $query);
+                confirm_query($query);
 
                 while ($row = mysqli_fetch_assoc($select_post)) {
 
                     // echo $row['post_id'];
-                    confirm_query($query);
 
                     $post_title = $row['post_title'];
                     $post_author = $row['post_author'];
