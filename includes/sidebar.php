@@ -15,25 +15,29 @@
         </form>
     </div>
 
-    <!-- login form -->
-    <div class="well">
-        <h4>Login</h4>
-        <form action="includes/login.php" method="post" ;>
-            <div class="form-group">
-                <input type="text" class="form-control" name="username" placeholder="Enter username" autocomplete="username">
-            </div>
+    <?php if (!isset($_SESSION['role'])) : ?>
 
-            <div class="input-group">
-                <input type="password" class="form-control" name="password" placeholder="Enter password" autocomplete="current-password">
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" id="login-btn" name="login_btn" type="submit">Login</button>
-                    <a href="./registration.php">
-                        <div class="btn btn-primary" id="register-btn" name="register_btn">Register</div>
-                    </a>
-                </span>
-            </div>
-        </form>
-    </div>
+        <!-- login form -->
+        <div class="well">
+            <h4>Login</h4>
+            <form action="includes/login.php" method="post" ;>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="Enter username" autocomplete="username">
+                </div>
+
+                <div class="input-group">
+                    <input type="password" class="form-control" name="password" placeholder="Enter password" autocomplete="current-password">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" id="login-btn" name="login_btn" type="submit">Login</button>
+                        <a href="./registration.php">
+                            <div class="btn btn-primary" id="register-btn" name="register_btn">Register</div>
+                        </a>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+    <?php endif; ?>
 
     <!-- Blog Categories -->
     <div class="well">
