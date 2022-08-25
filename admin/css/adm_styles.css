@@ -5,3 +5,8 @@
 #bulkOptionsContainer {
     padding-left: 0px;
 }
+
+.side-nav {
+    right: auto;
+    height: 100%;
+}
