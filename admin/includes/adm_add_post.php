@@ -24,7 +24,7 @@ if (isset($_POST['create_post'])) {
 
     $post_tags = $_POST['post_tags'];
     $post_content = $_POST['post_content'];
-    $post_date = date('y-m-d'); 
+    $post_date = date('y-m-d');
 
     move_uploaded_file($post_image_temp, "../images/$post_image");
 
@@ -80,7 +80,12 @@ if (isset($_POST['create_post'])) {
 
     <div class="form-group">
         <label for="author">Post Author</label>
-        <input type="text" class="form-control" name="author">
+        <p name="author">
+            <?php
+            if (isset($_SESSION['username'])) {
+                echo $_SESSION['username'];
+            } ?>
+        </p>
     </div>
 
     <div class="form-group">
