@@ -30,6 +30,38 @@ if (isset($_POST['checkBoxArray'])) {
                 $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
                 $update_to_published_status = mysqli_query($connection, $query);
                 break;
+
+            case 'clone':
+                $select_post_query = "SELECT * FROM posts WHERE post_id = '{$post_value_id}' ";
+                $clone_post_query = mysqli_query($connection, $select_post_query);
+
+                while ($row = mysqli_fetch_assoc($clone_post_query)) {
+                    $post_id = $row['post_id'];
+                    $post_author = $row['post_author'];
+                    $post_title = $row['post_title'];
+                    $post_cat_id = $row['post_cat_id'];
+                    $post_category = $row['post_category'];
+                    $post_status = $row['post_status'];
+                    $post_image = $row['post_image'];
+                    $post_tags = $row['post_tags'];
+                    $post_date = $row['post_date'];
+                    $post_views_count = $row['post_views_count'];
+                    $post_content = $row['post_content'];
+                }
+
+                // $insert_post_clone = "INSERT INTO posts(post_author, post_title, post_cat_id, post_category, post_status, post_image, post_tags, post_date, post_views_count, post_content ";
+                // $insert_post_clone .= " VALUES ('{$post_author}', `{$post_title}`, {$post_cat_id}, '{$post_category}', '{$post_status}', '{$post_image}', '{$post_tags}', now(),'{$post_views_count}', '{$post_content}' ) ";
+
+                $insert_post_clone = "INSERT INTO posts(post_cat_id, post_category, post_title, post_author, post_date, post_image, post_content, post_tags, post_status)";
+                $insert_post_clone .= " VALUE({$post_cat_id},'{$post_category}', '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_status}') ";
+
+
+                $copy_query = mysqli_query($connection, $insert_post_clone);
+
+                if (!$copy_query) {
+                    die("Query Failed: \n" . mysqli_error($connection));
+                }
+                break;
         }
     }
 }
@@ -51,6 +83,7 @@ if (isset($_POST['checkBoxArray'])) {
                 <option value="draft">Draft</option>
                 <option value="archive">Archive</option>
                 <option value="deny">Deny</option>
+                <option value="clone">Clone</option>
             </select>
 
         </div>
