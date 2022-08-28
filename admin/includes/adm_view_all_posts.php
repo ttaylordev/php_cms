@@ -49,12 +49,8 @@ if (isset($_POST['checkBoxArray'])) {
                     $post_content = $row['post_content'];
                 }
 
-                // $insert_post_clone = "INSERT INTO posts(post_author, post_title, post_cat_id, post_category, post_status, post_image, post_tags, post_date, post_views_count, post_content ";
-                // $insert_post_clone .= " VALUES ('{$post_author}', `{$post_title}`, {$post_cat_id}, '{$post_category}', '{$post_status}', '{$post_image}', '{$post_tags}', now(),'{$post_views_count}', '{$post_content}' ) ";
-
                 $insert_post_clone = "INSERT INTO posts(post_cat_id, post_category, post_title, post_author, post_date, post_image, post_content, post_tags, post_status)";
                 $insert_post_clone .= " VALUE({$post_cat_id},'{$post_category}', '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_status}') ";
-
 
                 $copy_query = mysqli_query($connection, $insert_post_clone);
 
