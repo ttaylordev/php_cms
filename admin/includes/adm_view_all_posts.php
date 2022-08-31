@@ -35,6 +35,11 @@ if (isset($_POST['checkBoxArray'])) {
                 $select_post_query = "SELECT * FROM posts WHERE post_id = '{$post_value_id}' ";
                 $clone_post_query = mysqli_query($connection, $select_post_query);
 
+            case 'reset_views_count':
+                $query = "UPDATE posts SET post_views_count = 0 WHERE post_id = $post_value_id";
+                $update_to_published_status = mysqli_query($connection, $query);
+                break;
+
                 while ($row = mysqli_fetch_assoc($clone_post_query)) {
                     $post_id = $row['post_id'];
                     $post_author = $row['post_author'];
@@ -80,6 +85,7 @@ if (isset($_POST['checkBoxArray'])) {
                 <option value="archive">Archive</option>
                 <option value="deny">Deny</option>
                 <option value="clone">Clone</option>
+                <option value="reset_views_count">Reset Views Count</option>
             </select>
 
         </div>
