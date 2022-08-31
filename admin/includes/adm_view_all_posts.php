@@ -100,6 +100,7 @@ if (isset($_POST['checkBoxArray'])) {
                 <th>Image</th>
                 <th>Tags</th>
                 <th>Comments</th>
+                <th>Views</th>
                 <th>Date</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -126,8 +127,8 @@ if (isset($_POST['checkBoxArray'])) {
                     $post_image = $row['post_image'];
                     $post_tags = $row['post_tags'];
                     $post_date = $row['post_date'];
-                    $post_views_count = $row['post_views_count'];
                     $post_content = $row['post_content'];
+                    $post_views_count = $row['post_views_count'];
 
                     $query = "SELECT * FROM categories WHERE cat_id = $post_cat_id ";
                     $select_update_cat_id = mysqli_query($connection, $query);
@@ -160,6 +161,8 @@ if (isset($_POST['checkBoxArray'])) {
                         <td><img src='../images/{$post_image}' alt='{$post_image}' width='100'</td>
                         <td>{$post_tags}</td>
                         <td><a href='./adm_view_post_comments.php?id=$post_id'>$count_comments</a></td>
+                        
+                        <td>$post_views_count</a></td>
                         <td>{$post_date}</td>
                         <td><a href='posts.php?source=edit_post&p_id={$post_id}'><i class='far fa-edit'></i> Edit</a></td> 
                         <td><a onClick=\"javascript: return confirm('Delete post?'); \" href='posts.php?delete={$post_id}'> Delete</a></td>
