@@ -20,6 +20,11 @@
             if (isset($_GET['view_by_post'])) {
 
                 $post_id = $_GET['view_by_post'];
+                $view_count_query = "UPDATE posts SET post_views_count = post_views_count + 1 WHERE post_id = '{$post_id}'";
+                $view_count_update = mysqli_query($connection, $view_count_query);
+                confirm_query($view_count_query);
+
+
                 $query = "SELECT * FROM posts WHERE post_id = '{$post_id}'";
                 $select_post = mysqli_query($connection, $query);
                 confirm_query($query);
@@ -37,6 +42,7 @@
                 }
             } else {
                 echo "invalid post Id";
+                header("Location: index.php");
             }
 
             ?>
