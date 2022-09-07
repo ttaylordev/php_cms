@@ -32,7 +32,7 @@ if (isset($_POST['checkBoxArray'])) {
                 break;
 
             case 'clone':
-                $select_post_query = "SELECT * FROM posts WHERE post_id = '{$post_value_id}' ";
+                $select_post_query = "SELECT * FROM posts WHERE post_id =" . mysqli_real_escape_string($connection, $post_value_id);
                 $clone_post_query = mysqli_query($connection, $select_post_query);
 
                 while ($row = mysqli_fetch_assoc($clone_post_query)) {
