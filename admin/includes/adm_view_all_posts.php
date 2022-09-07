@@ -7,38 +7,33 @@ if (isset($_POST['checkBoxArray'])) {
 
         switch ($bulk_options) {
             case 'published':
-                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
+                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id =" . mysqli_real_escape_string($connection, $post_value_id);
                 $update_to_published_status = mysqli_query($connection, $query);
                 break;
 
             case 'pending':
-                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
+                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id =" . mysqli_real_escape_string($connection, $post_value_id);
                 $update_to_published_status = mysqli_query($connection, $query);
                 break;
 
             case 'draft':
-                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
+                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id =" . mysqli_real_escape_string($connection, $post_value_id);
                 $update_to_published_status = mysqli_query($connection, $query);
                 break;
 
             case 'archive':
-                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
+                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id =" . mysqli_real_escape_string($connection, $post_value_id);
                 $update_to_published_status = mysqli_query($connection, $query);
                 break;
 
             case 'deny':
-                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = $post_value_id";
+                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id =" . mysqli_real_escape_string($connection, $post_value_id);
                 $update_to_published_status = mysqli_query($connection, $query);
                 break;
 
             case 'clone':
                 $select_post_query = "SELECT * FROM posts WHERE post_id = '{$post_value_id}' ";
                 $clone_post_query = mysqli_query($connection, $select_post_query);
-
-            case 'reset_views_count':
-                $query = "UPDATE posts SET post_views_count = 0 WHERE post_id = $post_value_id";
-                $update_to_published_status = mysqli_query($connection, $query);
-                break;
 
                 while ($row = mysqli_fetch_assoc($clone_post_query)) {
                     $post_id = $row['post_id'];
@@ -62,6 +57,12 @@ if (isset($_POST['checkBoxArray'])) {
                 if (!$copy_query) {
                     die("Query Failed: \n" . mysqli_error($connection));
                 }
+                break;
+
+
+            case 'reset_views_count':
+                $reset_query = "UPDATE posts SET post_views_count = 0 WHERE post_id =" . mysqli_real_escape_string($connection, $post_value_id);
+                $reset_views_count_query = mysqli_query($connection, $reset_query);
                 break;
         }
     }
