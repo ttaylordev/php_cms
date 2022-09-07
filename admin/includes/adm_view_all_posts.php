@@ -150,7 +150,7 @@ if (isset($_POST['checkBoxArray'])) {
                         <td><input type="checkbox" name="checkBoxArray[]" class="checkBoxes" value='<?php echo $post_id; ?>'></td>
 
             <?php
-                        $comment_query = "SELECT * FROM comments WHERE comment_post_id = $post_id";
+                        $comment_query = "SELECT * FROM comments WHERE comment_post_id =" . mysqli_real_escape_string($connection, $post_id);
                         $send_comment_query = mysqli_query($connection, $comment_query);
 
                         $count_comments = mysqli_num_rows(($send_comment_query));
@@ -180,7 +180,7 @@ if (isset($_POST['checkBoxArray'])) {
 
             if (isset($_GET['delete'])) {
 
-                $del_post_id = $_GET['delete'];
+                $del_post_id = mysqli_real_escape_string($connection, $_GET['delete']);
 
                 $query = "DELETE FROM posts WHERE post_id = {$del_post_id}";
                 $delete_query = mysqli_query($connection, $query);
