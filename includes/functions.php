@@ -12,6 +12,11 @@ function DisplayCategories()
     }
 }
 
+function redirect($location)
+{
+    return header(header: "Location:" . $location);
+}
+
 // function SessionTimedRenew()
 // {
 

@@ -40,6 +40,7 @@
                     $post_content = $row['post_content'];
                     $post_id = $row['post_id'];
                 }
+                
             } else {
                 echo "invalid post Id";
                 header("Location: index.php");

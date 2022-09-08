@@ -22,7 +22,12 @@ if (isset($_POST['create_comment'])) {
     } else {
         echo "<script>alert('Fields cannot be empty')</script>";
     }
+} else {
+    
+    // redirect(location: "/cms/post.php?p_id=$post_id");
 }
+
+
 
 ?>
 
